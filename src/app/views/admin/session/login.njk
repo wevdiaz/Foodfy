@@ -1,0 +1,36 @@
+{% extends "admin/session/session.njk" %}
+
+{% block content %}
+    <section class="login">
+        <h2>Iniciar Sessão</h2>
+
+        <form action="/admin/users/login" method="POST">
+
+            <div class="fields">
+                <label>Email</label>
+                <input type="email" 
+                        name="email" 
+                        value="{{user.email}}" 
+                        placeholder="Digite seu email"
+                        onblur="Validate.apply(this, 'isEmail')"
+                         
+                        {% if error and user.email === "" %} class="field-error" {% endif %}
+                >
+            </div>
+
+            <div class="fields">
+                <label>Senha</label>
+                <input type="password" name="password"  placeholder="Digite sua senha" {% if error %} class="field-error" {% endif %}>
+            </div>
+
+            <div id="btn-login">
+                <a href="/admin/users/forgot-password">Perdeu a senha?</a>
+                <button type="submit">Acessar</button>
+            </div>
+
+        </form>
+
+    </section>    
+
+{% endblock %}
+    

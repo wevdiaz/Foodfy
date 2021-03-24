@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% block head %}
+        <title>Foodfy - Login</title>
+    {% endblock %}    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+    {% include "../parts/styles.njk" %}
+</head>
+<body>
+
+    <div class="container-login">
+
+        <div id="logo">
+            <a href="/">
+                <img src="/img/logo.png" alt="logo da aplicação">
+            </a>
+        </div>
+
+        {% include "../parts/messages.njk" %} 
+
+        {% block content %}
+        {% endblock %}
+
+        <script src="../../js/scripts.js"></script> 
+    </div>
+    
+</body>
+</html>
