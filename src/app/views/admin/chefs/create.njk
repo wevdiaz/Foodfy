@@ -1,0 +1,29 @@
+{% extends "admin/recipes/adm.njk"%}
+
+        {% block head %}
+        <title>Foodfy - Chefs</title>        
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {% endblock %}
+
+
+        {% block content %}                        
+
+            <section class="create_chefs">
+
+                <form action="/admin/chefs" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <h2>Criando chef</h2>
+                        <button type="submit">Salvar chef</button>
+                    </div>
+
+                   {% include "admin/chefs/fields_chefs.njk" %}
+                    
+                </form>
+                
+            </section>
+
+            <script src="../../js/upload_images.js"></script>
+            
+
+        {% endblock %}
+        

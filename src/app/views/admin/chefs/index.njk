@@ -1,0 +1,51 @@
+{% extends "admin/recipes/adm.njk" %}
+
+        {% block head %}
+        <title>Foodfy - Chefs</title>
+        <link rel="stylesheet" href="/style/chefs.css">
+        {% endblock %}
+
+        
+        {% block content %}            
+
+            <div id="landingPage_chefs">
+
+                {% if userSession.is_admin === true %}
+                     <div class="header-create">
+                        <h2>Gerenciar chefs</h2> 
+                        <p>
+                            <a href="/admin/chefs/create" class="buttonform">Novo Chef</a>
+                        </p>           
+                    </div>
+                {% else %}
+                    <h2>Chefs cadastrados</h2>
+                {% endif %}
+
+                {% if chefs == "" %}
+                    <p>Nenhum chef cadastrado no momento. 👩‍🍳</p>
+                {% endif %}
+
+                <section class="list_chefs">                    
+
+                    {% for chef in chefs %}
+
+                    <div class="chef">
+                        <div class="img_chef">
+                            <img src="{{chef.avatar}}" alt="{{chef.name}}">
+                        </div>
+
+                        <div class="name_chef">
+                            <p>{{chef.name}}</p>
+                            <a href="/admin/chefs/{{chef.id}}">Visualizar</a>
+                        </div>
+                    </div>
+
+                    {% endfor %}                    
+
+                </section>               
+
+            </div>
+
+        {% endblock %}   
+
+        

@@ -1,0 +1,70 @@
+{% extends "admin/recipes/adm.njk" %}
+
+        {% block head %}
+        <title>Foodfy - Chefs</title>
+        <link rel="stylesheet" href="/style/listRecipes.css">
+        <link rel="stylesheet" href="/style/chefs.css">
+        {% endblock %}
+
+        
+        {% block content %}
+
+            <div id="details_chefs">
+
+                <header>
+                    <h3>Chef: {{chef.name}}</h3>
+
+                    {% if userSession.is_admin === true %}
+                        <a href="/admin/chefs/{{chef.id}}/edit" class="buttonform">Editar</a>
+                    {% endif %}
+                </header>
+
+                <div class="about_chef">
+                    <div class="photo_chef">
+                        <img src="{{ chef.avatar }}" alt="{{chef.name}}">
+                    </div>
+
+                    <h2>{{chef.name}}</h2>
+                    <p><span class="totalRecipesChef">{{chef.total_recipes}}</span> receitas</p>
+                </div>
+
+                <h2>Receitas</h2>
+
+                <section class="listRecipes">                  
+
+                    
+                    {% for recipe in chefRecipes %}
+
+
+                    {% if recipe.id == null %}
+                        <p>Nenhuma receita cadastrada. &#x1F963;</p>
+
+                    {% else %}
+
+                        <div class="item">
+
+                            <div class="img-recipe-adm">
+                                <img src="{{recipe.imageFeatured}}" alt="{{recipe.title}}">
+                            </div>
+
+                            <div class="information">
+                                <div class="info-prato">
+                                    <h3>{{recipe.title}}</h3>
+                                    <span class="info-chef">por {{recipe.name}}</span>
+                                    <a href="/admin/recipes/{{recipe.id}}">visualizar</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </section>
+
+            </div> 
+
+        {% endblock %}          
+
+        

@@ -1,0 +1,81 @@
+{% extends "admin/recipes/adm.njk" %}
+
+{% block head %}
+    <title>Foodfy - Chefs</title>    
+    <link rel="stylesheet" href="/style/modal_delete.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block content %}                        
+
+    <section class="create_chefs">
+
+        <form action="/admin/chefs?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div>
+                <h2>Editando chef</h2>
+                <div class="boxEdition"> 
+                    <button class="btn-delete" form="chef-delete" type="submit">Deletar</button>                             
+                    <button type="submit">Salvar cadastro</button>
+                </div>
+            </div>
+
+            {% include "admin/chefs/fields_chefs.njk" %}
+            
+            <input type="hidden" name="id" value="{{chef.id}}">                   
+            
+        </form>                
+        
+        <form id="chef-delete" action="/admin/chefs?_method=DELETE" method="post">
+            <input type="hidden" name="id" value="{{chef.id}}"> 
+            <input type="hidden" name="file_id" value="{{chef.file_id}}">
+            <input type="hidden" id="totalRecipes" value={{chef.total_recipes}}>                       
+        </form>
+
+        <script>
+
+            const formDelete = document.querySelector("#chef-delete");
+
+            formDelete.addEventListener("submit", function(){
+
+                const checkRecipes = document.querySelector("#chef-delete #totalRecipes");
+                const confirmation = confirm("Deseja apagar esse cadastro?"); 
+
+                console.log(checkRecipes.value);                                                                      
+
+                if(!confirmation)  {
+
+                    event.preventDefault(); 
+                    
+                } 
+
+                else if (checkRecipes.value > 0) {
+                    event.preventDefault();
+                    alert("Não é possível deletar chef com receita cadastrada.");
+                }                      
+
+            });
+            
+        </script>
+
+    </section>
+
+    <script src="../../../js/upload_images.js"></script>
+    <script>
+
+        const imageActive = document.querySelector("#create_chefs .Edit-avatarchef");
+        const imageActive2 = document.querySelector("#create_chefs input[name='removed_avatar']");
+        const buttonUploadImage = document.querySelector("#create_chefs #Upload-Chef-Photo #photos-input ");
+
+        buttonUploadImage.addEventListener("click", function(event) {
+            if (imageActive2.value == "") {
+            console.log(imageActive2.value)
+                alert("Você já possui uma foto selecionada!");
+                event.preventDefault();
+            }
+        });
+        
+    </script>
+
+{% endblock %}                       
+
+        

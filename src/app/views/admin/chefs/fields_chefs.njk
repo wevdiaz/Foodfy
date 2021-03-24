@@ -1,0 +1,31 @@
+<label for="name">Nome</label>
+<input type="text" name="name" value="{{chef.name}}" {% if error and chef.name === "" %} class="field-error" {% endif %}>
+
+<label for="avatar_url">Avatar</label>
+
+    {% if chef.avatar %}
+        <div class="Edit-avatarchef" id={{chef.file_id}} >
+            <input type="text" name="photoChef" id="avatarURL" value="{{chef.avatar}}">
+            <input type="hidden" name="file_id" value="{{chef.file_id}}">
+            <span class="material-icons btnclose-edit" onclick="PhotosUploadChefs.removeOldPhoto(event)">close</span>           
+        </div>
+        <input type="hidden" name="removed_avatar">
+    {% endif %}
+
+<div id="Avatar-Chef-Preview"></div>
+
+<div id="Upload-Chef-Photo">   
+    <input 
+        id="photos-input" 
+        type="file" 
+        name="photoChef"        
+        accept="image/*"
+        onchange="PhotosUploadChefs.handleFileInput(event)"         
+        value={{chef.avatar}}    
+    >
+    <p>Enviar Avatar</p>
+   
+</div>
+    
+
+    

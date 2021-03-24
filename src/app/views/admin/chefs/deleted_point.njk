@@ -1,0 +1,24 @@
+{% extends "admin/recipes/adm.njk" %}
+
+{% block head %}
+    <title>Foodfy - Chefs</title>
+    <link rel="stylesheet" href="/style/chefs.css">
+    <link rel="stylesheet" href="/style/modal_delete.css">
+{% endblock %}
+
+{% block content %}                       
+
+    <div id="modal" class="active">
+        <div class="content">
+            <h1>Cadastro deletado com sucesso.</h1>
+        </div>
+    </div>
+    
+    <script>
+
+        setTimeout(function(){
+        window.location = "/admin/chefs"}, 1500);
+        
+    </script>
+
+{% endblock %}                        
