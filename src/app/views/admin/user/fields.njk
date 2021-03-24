@@ -1,0 +1,19 @@
+
+    <div class="fields">
+        <label>Nome</label>
+        <input type="text" name="name" value="{{user.name}}" placeholder="Digite seu nome completo" {% if error and user.name === "" %} class="field-error" {% endif %} >
+    </div>
+
+    <div class="fields">
+        <label>Email</label>
+        <input type="email" 
+                name="email"
+                value="{{user.email}}" 
+                placeholder="Digite seu email"
+                onblur="Validate.apply(this, 'isEmail')"
+
+                {% if error and user.email === "" %} class="field-error" {% endif %}
+        >
+    </div>
+
+    

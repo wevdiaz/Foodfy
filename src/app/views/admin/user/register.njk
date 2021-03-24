@@ -1,0 +1,38 @@
+{% extends "admin/recipes/adm.njk" %}
+
+{% block head %}
+    <title>Foodfy - Users</title>        
+{% endblock %}
+
+
+{% block content %}            
+
+    <section class="container-main">
+        <form id="form-register" action="/admin/users/register" method="post">
+            <div class="header-form">
+                <h2>Criar Usuário</h2>
+
+                    <div class="group-button-form">
+                    <button type="submit">Salvar</button>
+                    <a href="/admin/users/list" id="btn-cancel" class="buttonform">Cancelar</a>
+                </div>
+            </div>
+
+            <div class="fields-register">
+                
+                {% include "admin/user/fields.njk" %}
+
+                <div id="checkbox">
+                    <input type="checkbox" name="is_admin" value="true"><span>Administrador</span>
+                </div>
+                
+            </div>
+            
+        </form>
+    </section>
+
+    <script src="../../js/scripts.js"></script>
+
+{% endblock %}   
+
+        

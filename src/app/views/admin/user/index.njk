@@ -1,0 +1,46 @@
+{% extends "admin/recipes/adm.njk" %}
+
+{% block head %}
+    <title>Foodfy - Usuários</title>        
+{% endblock %}
+
+
+{% block content %}            
+
+    <section class="container-main user-dashborad">
+
+        <form action="/admin/profile?_method=PUT" method="post">
+
+            <div class="header-form">
+                <h2>Bem vindo {{user.name}}</h2>
+
+                    <div>
+                        <button type="submit">Salvar</button>                    
+                    </div>
+            </div>
+
+            <div class="fields-register">
+                
+                {% include "admin/user/fields.njk" %}
+
+                <div class="fields">
+                    <label>Senha</label>
+                    <input type="password" 
+                            name="password"                    
+                            placeholder="Digite sua senha para atualizar seu cadastro" 
+                            {% if error and user.password === "" %} class="field-error" {% endif %}                       
+                    >
+                </div>
+
+                <input type="hidden" name="id" value= {{user.id}}>
+                
+            </div>
+            
+        </form>
+    </section>
+
+    <script src="../../js/scripts.js"></script>
+
+{% endblock %}   
+
+        

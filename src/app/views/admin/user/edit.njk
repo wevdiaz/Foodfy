@@ -1,0 +1,70 @@
+{% extends "admin/recipes/adm.njk" %}
+
+{% block head %}
+    <title>Foodfy - Usuários</title>        
+{% endblock %}
+
+
+{% block content %}            
+
+    <section class="container-main user-dashborad">
+
+        <form id="form-delete-user" action="/admin/users/list?_method=DELETE" method="POST">
+            <input type="hidden" name="id" value="{{user.id}}">
+        </form>
+
+        <form action="/admin/users/list?_method=PUT" method="post">  
+                
+            <div class="header-form">
+                <h2>Atualizar Usuário</h2>
+
+                <div class="group-button-form">
+
+                    <div>
+                        {% if user.id != userSession.id %}
+                            <button type="submit" class="btn-delete"  form="form-delete-user">Deletar</button>
+                        {% endif %}                    
+                    </div>
+
+                    <div>
+                        <button type="submit">Salvar</button>                    
+                    </div>
+                </div>
+
+                    
+            </div>
+
+            <div class="fields-register">
+                
+                {% include "admin/user/fields.njk" %}
+
+                <div id="checkbox">
+                    <input type="checkbox" name="is_admin" value="true" {% if user.is_admin == true %} checked {% endif %}><span>Administrador</span>
+                </div>
+
+                <input type="hidden" name="id" value= {{user.id}}>
+                
+            </div>
+            
+        </form>
+    </section>
+
+    <script src="../../js/scripts.js"></script>
+    <script src="../../../js/script-foodfy.js"></script>
+    <script>
+        const formDeleteUser = document.querySelector("#form-delete-user");
+
+        formDeleteUser.addEventListener("submit", function(event){
+            const confirmation = confirm("Tem certeza que deseja deletar o usuário? Essa operação não poderá ser desfeita!");
+
+            if(!confirmation) {
+                event.preventDefault();
+            }
+            
+        });
+
+    </script>
+
+{% endblock %}   
+
+        

@@ -1,0 +1,81 @@
+{% extends "admin/recipes/adm.njk" %}
+
+{% block head %}
+    <title>Foodfy - Users</title>        
+{% endblock %}
+
+{% block content %}
+    <section class="container-main user-dashborad">
+         <div class="header-list">
+            <h2>Usuários</h2>
+
+            <div>
+                <a href="/admin/users/register" class="buttonform">Novo</a>                   
+            </div>
+        </div>
+
+        <div class="list-users">
+
+            {% for user in users %}
+                <div class="user">
+                    <div>
+                        <p>{{user.name}}</p>
+                    </div>
+                    <div>
+                        <p>{{user.email}}</p>
+                    </div>
+
+                    <div class="user-buttons">
+                        <ul>
+                            <li>
+                                <a href="/admin/users/{{user.id}}/edit" >Editar</a>
+                            </li>
+
+                            <li>
+                                {% if user.id != userSession.id %}                                    
+                                   <form id="form-delete-user" action="/admin/users/list?_method=DELETE" method="POST" >
+                                        <button type="submit" class="btn-remove">Remover</button>
+                                        <input type="hidden" name="id" value="{{user.id}}">
+                                   </form>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+
+            
+        </div>
+    </section>
+
+    <script>
+        
+        const listUsers = document.querySelectorAll(".list-users .user");
+        
+        for (user of listUsers) {
+            user.addEventListener("click", function(event) {
+                const formDeleteUser = event.target.parentNode;
+
+                formDeleteUser.addEventListener("submit", function(event){
+                const confirmation = confirm("Tem certeza que deseja deletar o usuário? Essa operação não poderá ser desfeita!");
+
+                if(!confirmation) {
+                    event.preventDefault();
+                }
+                    
+                });
+                
+            });
+        }
+
+        /* formDeleteUser.addEventListener("submit", function(event){
+            const confirmation = confirm("Tem certeza que deseja deletar o usuário? Essa operação não poderá ser desfeita!");
+
+            if(!confirmation) {
+                event.preventDefault();
+            }
+            
+        }); */
+
+    </script>
+{% endblock %}
