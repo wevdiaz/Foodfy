@@ -1,0 +1,73 @@
+{% extends "visitors/layout.njk" %}
+
+{% block head %}
+    <title>Foodfy - Detalhe</title>
+{% endblock head %}
+
+{% block content %}
+    
+    <div class="img-recipe">
+        <img src="{{imageFeatured}}" alt="{{recipe.title}}">
+
+        <div class="gallery-preview">
+
+            {% for image in files %}
+                <div class="images-gallery" {% if loop.index0 == 0 %} class="active" {% endif %} onclick="ImageGallery.setImage(event)">
+                    <img 
+                        src="{{image.src}}"  
+                        alt="{{image.name}}"                         
+                    >
+                </div> 
+            {% endfor %}           
+            
+        </div>
+    </div>
+
+    <div class="info-recipe">
+        <h1>{{recipe.title}}</h1>
+        <span class="chef-recipe">por {{recipe.chef_name}}</span>
+    </div>
+
+    <div class="ingredientes">
+        <h2>Ingredientes</h2>
+        <button class="btn-mostrar-esconder btn-ingredientes" onclick="ocultarIngredientes()">MOSTRAR</button>        
+    </div>
+    <div class="detalheReceita">
+        <ul class="lista-ingredientes ocultar">
+
+            {% for item in recipe.ingredients %}
+                <li>{{item}}</li>
+            {% endfor %}
+    
+        </ul>
+    </div>
+    
+
+
+    <div class="modoPreparo">
+        <h2>Modo de preparo</h2>
+        <button class="btn-mostrar-esconder" id="btn-preparo" onclick="ocultarPreparo()">MOSTRAR</button>        
+    </div>
+    <div class="detalheReceita">
+        <ol class="passosPreparo ocultar">
+            {% for item in recipe.preparation %}
+                <li>{{item}}</li>
+            {% endfor %}
+        </ol>
+    </div>
+
+
+    <div class="info-adicional">
+        <h2>Informações adicionais</h2>
+        <button class="btn-mostrar-esconder" id="btn-add" onclick="ocultarAdicional()">MOSTRAR</button>        
+    </div>
+    <div class="detalheReceita">
+        <div class="add-recipe ocultar">
+            <p>{{recipe.information}}</p>
+        </div>        
+    </div>
+
+    <script src="/js/script-foodfy.js"></script>
+    <script src="/js/selection_images.js"></script>
+
+{% endblock %}

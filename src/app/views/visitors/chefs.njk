@@ -1,0 +1,58 @@
+{% extends "visitors/layout.njk" %}  
+
+    {% block head %}
+        <title>Foodfy - Chefs</title>
+        <link rel="stylesheet" href="/style/chefs.css">
+    {% endblock %}
+
+    {% block head_content %}
+            <header class="topo-principal">
+                <a href="/">
+                    <img src="/img/logo.png" alt="logo Foodfy">
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="/sobre">Sobre</a></li>
+                        <li><a href="/receitas">Receitas</a></li>
+                        <li><a href="/chefs">Chefs</a></li>
+                        <li><a href="/admin/users/login">Usuários</a></li>
+                    </ul>
+                </nav>
+                
+            </header>
+    {% endblock%}
+
+    {% block content %}
+
+        {% if chefs == "" %}
+            <p>Nenhum chef cadastrado no momento. 👩‍🍳</p>
+        {% endif %}
+
+        <section class="list_chefs">
+            {% for chef in chefs %}
+
+               <a href="/chef/{{chef.id}}">
+                    <div class="chef">
+                        <div class="img_chef">
+                            <img src="{{chef.avatar}}" alt="{{chef.name}}">
+                        </div>
+
+                        <div class="name_chef">
+                            <p>{{chef.name}}</p>
+                            <span>{{chef.total_recipes}} receitas</span>
+                        </div>                    
+                    </div>
+               </a>
+
+            {% endfor %}
+        </section>                   
+
+    {% endblock %}
+
+    {% block footer %}
+        <footer>
+            <p>
+                <small>&copy; Todos os direitos reservados, receitas Foodfy.</small>
+            </p>
+        </footer>
+    {% endblock %}

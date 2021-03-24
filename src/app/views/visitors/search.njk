@@ -1,0 +1,45 @@
+{% extends "visitors/layout.njk" %}  
+
+{% block head %}
+    <title>Foodfy - Receitas</title>
+{% endblock %}
+
+        {% block content %}
+
+            <section id="search_recipes">
+
+                <h3>Buscando por " {{filter}} "</h3>           
+
+                <div class="galeria-receitas">
+
+                    {% for item in items %}
+                    <div class="receita" id={{item.id}}>
+                        <div class="img-prato">
+                            <img src="{{item.imageFeatured}}" alt="{{item.title}}">
+                        </div>
+
+                        <div class="info-prato">
+                            <h3>{{item.title}}</h3>
+                            <span class="info-chef">por {{item.name}}</span>
+                        </div> 
+                        <input type="hidden" name="id" value="{{item.id}}">                   
+                    </div>
+
+                    {% endfor %}               
+
+
+                </div>
+
+            </section> 
+
+            <script src="/js/script-foodfy.js"></script>            
+
+    {% endblock %}
+
+    {% block footer %}
+        <footer>
+            <p>
+                <small>&copy; Todos os direitos reservados, receitas Foodfy.</small>
+            </p>
+        </footer>
+    {% endblock %}
