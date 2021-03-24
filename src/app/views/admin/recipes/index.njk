@@ -1,0 +1,49 @@
+{% extends "admin/recipes/adm.njk" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/style/listRecipes.css">
+{% endblock %}
+
+{% block content %}
+
+            <div class="header-create">
+                <h2>Gerenciar receitas</h2> 
+                <p>
+                    <a href="/admin/recipes/create" class="buttonform">Nova Receita</a>
+                </p>           
+            </div>
+
+            <section class="listRecipes">
+
+                {% if recipes == "0"%}
+                    <p>Nenhuma receita cadastrada no momento &#x1F963;</p>
+                {% endif %}
+
+                {% for recipe in recipes %}
+                    <div class="item">
+
+                        <div class="img-recipe-adm">
+                            <img src="{{recipe.imageFeatured}}" alt="{{recipe.title}}">
+                        </div>
+
+                        <div class="information">
+                            <div class="info-prato">
+                                <h3>{{recipe.title}}</h3>
+                                <span class="info-chef">por {{recipe.chef_name}}</span>
+                                <a href="/admin/recipes/{{recipe.id}}">visualizar</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}            
+
+        </section>
+
+        <div class="pagination"
+                data-page="{{pagination.page}}"
+                data-total="{{pagination.total}}"
+            >                
+        </div>
+            
+            <script src="/js/pagination.js"></script>
+
+{% endblock %}

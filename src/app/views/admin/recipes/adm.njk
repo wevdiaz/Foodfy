@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <title>Foodfy - Receitas</title>
+        {% endblock %}
+
+        <meta charset="utf-8">
+        <meta name="author" content="Diazz">
+        <meta name="description" content="Site de receitas - administraçãoi">
+        <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+        {% include "../parts/styles.njk"%}
+       
+    </head>
+
+    <body>      
+        
+        <main>
+
+            <header id="header-adm">
+
+                <div id="container_header">
+                    <div id="logo-adm">                    
+                        <a href="../../../admin/profile">
+                            <img src="../../../img/logo2.png" alt="logo do Foodfy">
+                        </a>
+                    </div>
+
+                    <nav class="links_adm">
+
+                        <ul>
+                            <li class="account_user">
+                                <a href="/admin/recipes">receitas</a>
+
+                                {% if session.userID %}
+                                    <ul class="submenu">
+                                        <li>
+                                            <a class="not-bar" href="/admin/recipes">Todas Receitas</a>
+                                        </li>
+
+                                        <li>
+                                            <a class="not-bar" href="/admin/profile/my-recipes">Minhas Receitas</a>
+                                        </li>
+                                    </ul>
+                                {% endif %}
+                            </li>
+
+                            <li>
+                                <a href="/admin/chefs">chefs</a>
+                            </li>
+
+                            <li>
+                                {% if user.is_admin === true or userSession.is_admin === true %}
+                                    <a href="/admin/users/list">usuários</a>
+                                {% else %}
+                                    <a href="/admin/profile">usuário</a>
+                                {% endif %}
+                            </li>
+                        </ul>                   
+                        
+                    </nav>
+
+                   {% if session.userID %}
+                        <div class="button-logout">
+                            <form action="/admin/users/logout" method="POST">
+                                <button>sair</button>
+                            </form>
+                        </div>
+                   {% endif %}
+
+                </div>
+
+               
+
+                                
+            </header>
+
+            {% include "../parts/messages.njk" %}                        
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+        <script src="../../../js/menuActive.js"></script>
+    </body>
+</html>

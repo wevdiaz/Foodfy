@@ -1,0 +1,57 @@
+ <div class="item-form">
+    <div>Nome da receita</div>
+    <input type="text" name="title" placeholder="Digite nome da receita" value="{{recipe.title}}" {% if error and recipe.title === "" %} class="field-error" {% endif %}>
+ </div>
+
+<div class="item-form">
+    <div>Chef</div>
+    <select name="chef_id" {% if error and not recipe.chef_id %} class="field-error" {% endif %}>
+
+        <option value="" disabled selected="selected">Selecione um chef</option>  
+
+        {% for chef in chefOptions %}
+        <option value="{{chef.id}}" {% if recipe.chef_id == chef.id %} selected {% endif %}>
+            {{chef.name}}
+        </option>
+        {% endfor %}
+
+    </select>
+</div>
+
+<div id="ingredients">
+    <div>Ingredientes</div>
+
+    {% for ingredient in recipe.ingredients %}
+
+    <div class="ingredient">
+        <input type="text" name="ingredients[]" value="{{ingredient}}" placeholder="ingrediente" {% if error and ingredient === "" %} class="field-error" {% endif %}>                
+    </div>
+    {% else %}
+
+    <div class="ingredient">
+        <input type="text" name="ingredients[]" value="" placeholder="ingrediente" >                
+    </div>
+    {% endfor %}
+</div>
+<a href="#" class="add-ingredient">Adicionar novo ingrediente</a>
+
+<div id="modoPreparo">
+    <div>Modo de preparo</div>
+
+    {% for item in recipe.preparation %}
+
+    <div class="passoPreparo">                
+        <input type="text" name="preparation[]" value="{{item}}" placeholder="Novo passo" {% if error and item === "" %} class="field-error" {% endif %} >               
+    </div>
+    {% else %}
+    <div class="passoPreparo">                
+        <input type="text" name="preparation[]" value="" placeholder="Novo passo" >               
+    </div>
+    {% endfor %}
+</div>
+<a href="#" class="add-passo">Adicionar novo passo</a>
+
+<div class="item-form">
+    <div>Informações adicionais</div>
+    <textarea name="information" {% if error and recipe.information === "" %} class="field-error" {% endif %}>{{recipe.information}}</textarea>
+</div>

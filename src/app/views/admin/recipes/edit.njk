@@ -1,0 +1,76 @@
+{% extends "admin/recipes/adm.njk" %}
+
+{% block head %}
+    <title>Foodfy - Edição de Receita</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+           
+                
+        <form id="form-delete" action="/admin/recipes/{{recipe.id}}/edit?_method=DELETE" method="post">
+            <input type="hidden" name="id" value="{{recipe.id}}">  
+            <input type="hidden" name="files_recipes">                      
+        </form>
+    
+        <form class="form-create" action="/admin/recipes/{{recipe.id}}/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+
+        <header id="form-top"> 
+            <h2>Editando receita</h2>   
+
+            <div class="boxbuttons"> 
+                <button class="btn-delete" form="form-delete" type="submit">Deletar</button>                             
+                <button type="submit">Salvar receita</button>
+            </div>
+        </header>
+           
+        <div class="item-form">
+            <div>Imagem da receita</div>
+
+        <div class="columm-images">
+            <div id="photos-upload">
+                <input  id="photos-input" 
+                        type="file"
+                        name="photos" 
+                        multiple
+                        accept="image/*"
+                        onchange="PhotosUpload.handleFileInput(event)"
+                > 
+                <span class="material-icons {% if error %} field-error {% endif %}">add</span>               
+            </div>
+            <div id="recipes-preview">
+                {% if files %}
+                    {% for image in files %}
+                        <div class="photos" id="{{image.id}}">
+                            <img src="{{image.src}}" alt="{{image.name}}">
+                            <span class="material-icons" onclick="PhotosUpload.removeOldPhoto(event)">close</span>
+                        </div>
+                    {% endfor %}
+                    <input type="hidden" name="removed_files">
+                {% endif %}
+            </div>
+        </div>
+                        
+        </div>
+
+        {% include "../parts/fields.njk" %}
+
+        <input type="hidden" name="id" value="{{recipe.id}}">
+
+    </form> 
+        
+
+    <script src="../../../js/script-foodfy.js"></script>
+    <script src="../../../js/upload_images.js"></script>
+    <script>
+        let inputFiles_removed = document.querySelector("#form-delete input[name='files_recipes']");
+        const arrayFilesRecipes = document.querySelectorAll("#recipes-preview .photos");
+
+        for (item of arrayFilesRecipes) {
+            inputFiles_removed.value = inputFiles_removed.value + `${item.id},`
+        }
+
+      
+    </script>    
+
+{% endblock %}

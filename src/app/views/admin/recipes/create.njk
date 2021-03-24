@@ -1,0 +1,43 @@
+{% extends "admin/recipes/adm.njk" %}
+
+    {% block head %}
+        <title>Foodfy - Criação de Receita</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% endblock %}
+
+{% block content %}
+    
+    <form class="form-create" action="/admin/recipes" method="POST" enctype="multipart/form-data">
+
+        <header id="form-top">
+            <h2>Criando receita</h2>
+            <button type="submit">Salvar receita</button>
+        </header>
+
+        <div class="item-form">
+            <div>Imagem da receita</div>
+
+            <div class="columm-images">
+                <div id="photos-upload">
+                    <input  id="photos-input" 
+                            type="file"
+                            name="photos" 
+                            multiple
+                            accept="image/*"
+                            onchange="PhotosUpload.handleFileInput(event)"
+                            
+                    > 
+                    <span class="material-icons {% if error %} field-error {% endif %}" >add</span>              
+                </div>
+                <div id="recipes-preview"></div>
+            </div>
+                        
+        </div>       
+
+        {% include "../parts/fields.njk" %}        
+
+    </form>
+
+    <script src="../../js/script-foodfy.js"></script>
+    <script src="../../js/upload_images.js"></script>
+{% endblock %}
