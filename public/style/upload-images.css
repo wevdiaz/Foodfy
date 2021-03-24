@@ -1,0 +1,224 @@
+
+.item-form .columm-images {
+    display: flex;
+    align-items: center;
+    
+}
+
+.item-form #photos-upload,
+.create_chefs #Upload-Chef-Photo {
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    width: 200px;
+}
+
+.item-form #photos-upload span.material-icons {
+    padding: 8px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px -6px #333;
+    background-color: white;
+    color: black;
+    border: 2px solid #ddd;
+
+    width: 150px;
+    height: 150px;
+    text-align: center;    
+    font-size: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: border-color 350ms;
+
+}
+
+.item-form #photos-upload:hover span.material-icons {
+    border-color: var(--color-linkAndBtn);
+    color: var(--color-linkAndBtn);
+ }
+
+.item-form #photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;    
+
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+
+/* preview Recipes */
+.item-form #recipes-preview {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 8px;
+    width: 100%;
+    margin: 8px 0;
+}
+
+.item-form #recipes-preview img {
+    width: 100%;
+    height: 150px;
+
+    object-fit: cover;
+}
+
+#recipes-preview .photos {
+    position: relative;
+}
+
+#recipes-preview .photos span {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: rgba(255, 255, 255, 0.8);
+    color: red; 
+    font-weight: bold;  
+    font-size: 28px;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    opacity: 0;
+
+    transition: opacity 250ms;
+}
+
+#recipes-preview .photos:hover span {
+    opacity: 1;
+}
+
+/* === Create Chef field Upload === */
+.create_chefs form #Avatar-Chef-Preview {
+    margin-bottom: 0;
+}
+
+.create_chefs #Upload-Chef-Photo p {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: var(--color-linkAndBtn);
+    color: white;
+
+    width: 139px;
+    height: 37px;
+
+    text-align: center;
+    font-size: 16px;
+    line-height: 19px;     
+    
+}
+
+.create_chefs #Upload-Chef-Photo #photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    overflow: hidden;
+    width: 139px;
+    height: 90%;
+    opacity: 0;
+
+    margin-bottom: 0;
+
+    cursor: pointer;
+}
+
+#Upload-Chef-Photo  #Avatar-Chef-Preview {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.create_chefs form #Avatar-Chef-Preview .avatarChef {
+    width: 200px;
+    max-height: 200px;
+    margin: 0 auto;     
+}
+
+.create_chefs form #Avatar-Chef-Preview .avatarChef img {
+    width: 100%;
+    height: 200px; 
+    
+    border-radius: 50%;
+    border: 5px solid #6558c3;
+    object-fit: cover;
+}
+
+.create_chefs form #Avatar-Chef-Preview .avatarChef {
+    position: relative;
+}
+
+.create_chefs form #Avatar-Chef-Preview .avatarChef span.material-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(255, 255, 255, 0.8);
+    color: red;
+    font-size: 48px;
+
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: 250ms;
+}
+
+.create_chefs form #Avatar-Chef-Preview .avatarChef:hover span.material-icons {
+    opacity: 1;
+}
+
+/* === Avatar Chef page Edit === */
+
+.create_chefs form #avatarURL {
+    margin-bottom: 0;
+}
+
+.create_chefs form .Edit-avatarchef {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.create_chefs form .Edit-avatarchef #avatarURL {
+    margin-bottom: 16px;
+}
+
+.create_chefs form .Edit-avatarchef span.btnclose-edit {
+    position: absolute;
+    color: red;
+    right: 10px;
+    top: 10px;
+    font-size: 328x;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+
+
+
+
+

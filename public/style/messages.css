@@ -1,0 +1,40 @@
+div.messages {
+    width: 344px;
+    height: 135px;
+    margin-top: 95px;
+    padding: 32px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 19px;
+
+    position: absolute;
+    right: 8px;
+    top: -90px;
+    z-index: 200;
+
+    opacity: 1;
+
+    animation: hidemessage 300ms 5s ease-out forwards;
+    
+}
+
+.messages.error {
+    background-color: #dc4747;
+}
+
+.messages.success {
+    background-color: #01b12a;
+}
+
+@keyframes hidemessage {
+    to {
+        top: -200px;
+        opacity: 0;                
+    }
+}

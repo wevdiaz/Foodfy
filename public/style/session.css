@@ -1,0 +1,88 @@
+.container-login {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+#logo {
+    margin: 35px auto 0;
+    text-align: center;
+}
+
+section.login,
+section.forgot-password {
+    width: 500px;
+    margin-top: 100px;
+}
+
+section.login h2,
+section.forgot-password h2 {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.login #btn-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 35px;
+}
+
+.login #btn-login a {
+    text-decoration: none;
+
+    font-size: 16px;
+    line-height: 19px;
+    color: #969696;
+
+    transition: color 250ms;
+}
+
+.login #btn-login a:hover {
+    font-weight: bold;
+    color: #111;
+}
+
+.login input[type="password"],
+.login input[type="email"] {
+    margin-bottom: 0;    
+}
+
+.login .fields {
+    margin-top: 35px;
+}
+
+/* Validation Errors */
+
+input[type="password"].field-error,
+input[type="email"].field-error,
+input[type="text"].field-error,
+textarea.field-error,
+select.field-error,
+#photos-upload span.material-icons.field-error {
+    border: 1px solid #ff3131;    
+}
+
+/* ---  Forgot-password --- */
+.forgot-password .fields input[type="email"] {
+    margin-bottom: 0;
+}
+
+.forgot-password  #btn-forgot-password,
+.login #btn-password-reset  {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 35px;
+}
+
+/* validate errors */
+.login .fields div.error,
+.forgot-password .fields div.error  {
+    background-color: #e74c3c;
+    padding: 4px;
+    border-radius: 4px;
+    color: white;
+} 
+
+

@@ -1,0 +1,115 @@
+#form-register .header-form,
+.user-dashborad form .header-form,
+.user-dashborad .header-list  {
+    padding-top: 24px;
+    margin-bottom: 67px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#form-register .header-form h2,
+.user-dashborad form .header-form h2,
+.user-dashborad .header-list h2 {
+    margin: 0;
+}
+
+#form-register .header-form .group-button-form,
+.user-dashborad .header-form .group-button-form {
+    width: 320px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#form-register .header-form #group-button-form #btn-cancel {
+    background-color: #8a8a8a;
+}
+
+#form-register .header-form #group-button-form #btn-cancel:hover {
+    background-color: #555;
+}
+
+
+/* Fields */
+
+.fields {
+    margin-bottom: 35px;
+}
+
+.fields-register {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 40px;
+}
+
+.fields  label {
+    color: #111;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: bold;
+
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.fields  input[type="text"],
+.fields  input[type="email"],
+.fields  input[type="password"] {
+    padding: 4px 8px;
+    height: 49px;
+    width: 100%;
+   
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+    font-size: 16px;
+    line-height: 19px;    
+}
+
+.fields input[type="text"]::placeholder,
+.fields input[type="email"]::placeholder,
+.fields  input[type="password"]::placeholder {
+    color: #999;
+}
+
+.fields-register #checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.fields-register div input[type="checkbox"] {
+   width: 15px;
+   height: 15px;
+}
+
+ div#checkbox span {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: #111;
+    margin-left: 8px;    
+}
+
+
+/* validate errors */
+.fields-register div.error {
+    background-color: #e74c3c;
+    padding: 4px;
+    border-radius: 4px;
+    color: white;
+} 
+
+/* --- button Cancel  --- */
+#form-register .group-button-form #btn-cancel {
+    background-color: #8a8a8a;
+    transition: background-color 250ms;
+}
+
+#form-register .group-button-form #btn-cancel:hover {
+    background-color: lightslategray;
+}
+
+
+

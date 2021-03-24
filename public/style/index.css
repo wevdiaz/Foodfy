@@ -1,0 +1,691 @@
+/* CSS - Foodfy */
+
+:root {
+    --color-linkAndBtn: #6558C3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;   
+    
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+            
+}
+
+
+main {
+    max-width: 960px;
+    margin: 0 auto;    
+}
+
+.container-main {
+    margin-top: 110px;
+    width: 940px;
+}
+
+
+/*  Header */
+.topo-principal {
+    padding: 35px 0; 
+    width: 940px; 
+    display: grid; 
+    grid-template-columns: 120px 330px 1fr; 
+    align-items: center;       
+}
+
+nav ul {
+    list-style-type: none;     
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 25px;
+    line-height: 19px;    
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    line-height: 26px;
+    font-weight: 500; 
+    
+    position: relative;
+}
+
+nav ul li a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: red;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+
+}
+
+
+nav ul li a:hover {   
+    color: #f00;
+    transition: color 400ms ease-in-out;    
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    transition: width 500ms ease-in-out;
+}
+
+.topo-principal form {
+    justify-self: right;
+}
+
+.topo-principal form input {
+    width: 246px;
+    height: 37px;
+    padding: 10px 15px;
+    margin-right: 8px;
+
+    font-size: 14px;
+
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+/* caixa introdução */
+.intro {
+    width: 940px;
+    height: 366px;
+    padding: 20px;
+    background-color: #FBDFDB;
+    border-radius: 30px;
+}
+
+.intro h1 {
+    margin: 117px 60px 10px;
+    letter-spacing: 1px;    
+    line-height: 38px;    
+    font-size: 32px;
+}
+
+.intro p {
+    width: 316px;
+    font-size: 18px;
+    line-height: 28px;
+    opacity: 0.7;
+    margin: 0 60px 0;
+}
+
+.intro .photo-chef {
+    position: relative;
+    left: 624px;
+    top: -200px;
+}
+
+main h2 {
+    font-size: 24px;
+    line-height: 28px;
+    margin: 50px 0 20px;
+    letter-spacing: 1px;
+    word-spacing: 1px;    
+}
+
+
+/* ----  grid da Galeria -----*/
+.galeria-receitas { 
+
+    width: 940px;
+       
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 30px 40px; 
+    margin-bottom: 50px;      
+}
+
+.receita {
+    cursor: pointer;
+}
+
+
+/* --- Receita  -----*/
+.img-prato img {
+    border-radius: 15px;
+    width: 100%;
+    height: 150px;
+}
+
+.info-prato h3 {
+    font-size: 18px;
+    line-height: 21px;
+    margin: 20px 0 5px;
+}
+
+.info-prato span.info-chef {
+    color: #777777;
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 30px;
+}
+
+/* ---  Footer ----*/
+footer {
+    background-color: #eeeeee;
+    width: 100%;
+    margin-top: auto;   
+    text-align: center;
+    padding: 30px 0;
+    
+}
+
+
+footer p {
+    line-height: 16px;
+    color: #999999;
+}
+
+
+/*----- Sobre Foodfy  ------*/
+.sobre-foodfy h1 {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 20px;
+}
+
+.sobre-foodfy h3 {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+
+.sobre-foodfy p {
+    font-size: 18px;
+    line-height: 28px;
+    color: #444444;
+    margin-bottom: 30px;
+}
+
+
+/* ------  Modal  --------*/
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal {
+    width: 660px;
+    height: 415px;
+    background-color: #fff;
+    margin: 20vh auto;
+    position: relative;
+}
+
+.close-modal {
+    color: #999;
+    font-size: 16px;
+    line-height: 19px;
+    position: absolute;
+    bottom: 30px;
+    left: 281px;
+    cursor: pointer;
+}
+
+/* ----  Modal Active -----*/
+.modal-overlay.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.modal-content {
+    text-align: center;
+}
+
+.modal-content .img-prato {    
+   width: 80%; 
+   margin-bottom: 35px; 
+   position: relative;
+   top: 30px; 
+   left: 52px;  
+    
+}
+
+
+/* === Page Detalhe ===*/
+.img-recipe img {
+    width: 960px;
+    height: 280px;
+    border-radius: 15px;
+    margin-bottom: 8px;
+}
+
+.info-recipe {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #111;
+}
+
+.info-recipe h1 {
+    font-size: 36px;
+    line-height: 42px;
+    margin-bottom: 4px;
+}
+
+.chef-recipe {
+    font-size: 20px;
+    line-height: 24px;
+    color: #777;
+    font-weight: lighter;
+}
+
+.ingredientes h2,
+.modoPreparo h2,
+.info-adicional h2 {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 20px;
+    color: #111;    
+}
+
+.detalheReceita ul,
+.detalheReceita ol,
+.detalheReceita p {
+    list-style-position: inside;
+    font-size: 18px;
+    line-height: 28px;
+    color: #444;
+}
+
+
+
+/* === Botão Mostrar/Esconder === */
+.btn-mostrar-esconder {
+    font-size: 12px;
+    line-height: 14px;
+    color: #999;
+    background: none;
+    font-weight: bold; 
+    outline: none;
+
+    position: relative;
+    left: 8px; 
+    top: 20px;        
+}
+
+.ingredientes,
+.modoPreparo,
+.info-adicional {
+    display: flex; 
+}
+
+.ocultar {
+    display: none;
+}
+
+
+/* === ADMIN Foodfy === */
+
+/* === Header === */
+#header-adm {
+    height: 80px;
+    width: 100%;
+    background-color: #111;
+    position: fixed;
+    left: 0;
+    top: 0;  
+    z-index: 20;
+    
+    padding-top: 24px;
+}
+
+#container_header {
+    max-width: 960px;
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center; 
+       
+}
+
+#logo-adm {
+    margin-right: 50px;
+}
+
+.links_adm ul li a {
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 18px;
+    font-weight: bold;
+    color: #999;
+
+    margin-right: 30px;
+
+    text-decoration: none;
+    text-transform: uppercase;   
+
+    position: relative;
+}
+
+.links_adm ul li a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.links_adm ul li a:hover {
+    color: #fff;
+    transition: color 400ms ease-in-out;
+}
+
+.links_adm ul li a:hover::after {
+    width: 100%;
+    transition: width 500ms ease-in-out;
+}
+
+#container_header .button-logout form button {
+    position: absolute;
+    top: 33px;
+    right: 100px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+    line-height: 18px;
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    background-color: transparent;
+}
+
+.header-create {
+    margin-top: 150px;
+    margin-bottom: 30px;
+    width: 720px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-create  h2 { 
+    margin: 0;   
+    color: #111;    
+}
+
+
+/* --- Submenu do NAV ADM --- */
+.account_user {
+    position: relative;
+}
+
+.account_user .submenu {
+    display: flex;
+    flex-direction: column;
+    
+    width: 150px;
+    padding: 4px 0;
+
+    background-color: white;
+    border-radius: 4px;    
+    box-shadow: 2px 2px 4px 1px rgba(218, 78, 236, 0.836) ;
+
+    position: absolute;
+    left: -32px;
+    top: -10px;    
+
+    transition: all 200ms;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.links_adm .account_user .submenu li a.not-bar {
+    font-size: 12px;
+    line-height: 16px;   
+    margin: 0;
+    display: block; 
+    border-radius: 4px;   
+}
+
+.links_adm .account_user .submenu li a.not-bar:hover::after {
+    background-color: yellow;
+    width: 0;  
+}
+
+.links_adm .account_user .submenu li a.not-bar:hover {
+    color: #111;
+    font-weight: bold; 
+    padding-bottom: 2px;   
+   
+}
+
+.links_adm .account_user:hover .submenu {
+    opacity: 1;
+    visibility: initial;    
+}
+
+/* === Form Create === */
+.form-create {
+    width: 960px;
+}
+#form-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 100px;        
+}
+
+.boxbuttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+
+button[type="submit"],
+.buttonform {
+    width: 150px;
+    height: 37px;
+    color: white;
+    background-color: var(--color-linkAndBtn);
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+    box-shadow: 1px 1px 4px -3px rgba(0, 0, 0, 0.7);
+    letter-spacing: 0.1em;
+
+    transition: all 250ms;
+}
+
+button[type="submit"]:hover,
+.buttonform:hover {
+    background-color: var(--color-linkAndBtn);
+    filter: brightness(115%);
+}
+
+a.buttonform {
+    text-decoration: none;        
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+.item-form div:nth-child(1),
+#ingredients div:nth-child(1),
+#modoPreparo div:nth-child(1) {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    color: #111;
+}
+
+.form-create input,
+.form-create select {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;    
+    padding: 16px;
+    font-size: 16px;
+    box-sizing: border-box; 
+    color: #999999;        
+}
+
+.item-form,
+#ingredients,
+#modoPreparo {
+    margin-bottom: 30px;
+}
+
+.ingredient input,
+.passoPreparo input {
+    margin-bottom: 10px;
+}
+
+a.add-ingredient ,
+a.add-passo  {
+    text-decoration: none;
+    color: var(--color-linkAndBtn);
+    font-size: 16px;
+    line-height: 19px;    
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 30px;
+    position: relative;
+    top: -20px;
+}
+
+.add-recipe p {    
+    margin-bottom: 30px;
+}
+
+textarea {
+    border: 1px solid #ddd;
+    width: 100%;
+    height: 257px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+
+.boxbuttons .btn-delete,
+.boxEdition .btn-delete,
+button[type="submit"].btn-delete {
+    background-color: #DC4747;
+    transition: 300ms;
+}
+
+.boxbuttons .btn-delete:hover,
+.boxEdition .btn-delete:hover {
+    background-color: #DC4747;
+    filter: brightness(115%);
+}
+
+#form-delete {
+    margin-top: 100px;
+}
+
+
+
+/* === Show ADM === */
+.detailsRecipe {
+    margin-top: 80px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+/* --- Gallery Preview --- */
+.img-recipe .gallery-preview {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.img-recipe .gallery-preview .images-gallery  {
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-linkAndBtn);
+    border-radius: 4px;
+
+    margin-bottom: 10px;
+
+    opacity: 0.5;
+    cursor: pointer;
+
+}
+
+.img-recipe .gallery-preview .images-gallery:hover,
+.img-recipe .gallery-preview .images-gallery.active {
+    opacity: 1;
+}
+
+.img-recipe .gallery-preview .images-gallery img {
+    width: 100%;
+    height: 50px;
+
+    object-fit: cover;
+    border-radius: 4px;
+    margin:0;
+    
+}
+
+.img-recipe .gallery-preview div + div  {
+    margin-left: 10px;
+}
+
+/* --- Search Filter --- */
+#search_recipes > h3 {    
+    color: #111;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    line-height: 28px;
+
+    margin-bottom: 20px;
+}
+
+/* --- Menu Active --- */
+a.active {
+    color: #fff;
+}
+
+
+/* --- Pagination --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination a {
+    color: var(--color-linkAndBtn);
+    font-size: 16px;
+    line-height: 18px;
+    margin-right: 8px;
+    text-decoration: none;
+}
+
+.pagination a:hover {
+    filter: brightness(0.3);
+    border-bottom: 1px solid var(--color-linkAndBtn);
+}

@@ -1,0 +1,56 @@
+/* ---  List Users  --- */
+
+.user-dashborad .list-users {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 32px;
+}
+
+.user-dashborad .list-users .user div:first-child {
+    font-size: 18px;
+    line-height: 22px;
+    color: #111;
+}
+
+.user-dashborad .list-users .user div:nth-child(2) {
+    padding-top: 4px;
+    color: #777;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.user-dashborad .list-users .user .user-buttons ul {
+    list-style-type: none;        
+}
+
+.user-dashborad .list-users .user .user-buttons ul li {
+    display: inline-block;
+
+    padding: 16px 0;
+}
+
+.user-dashborad .list-users .user .user-buttons ul li a {
+    text-decoration: none;
+    margin-right: 16px;
+
+    font-size: 14px;
+    line-height: 17px;    
+    color: var(--color-linkAndBtn);
+    font-weight: bold;
+} 
+
+.user-dashborad .list-users .user .user-buttons ul li .btn-remove {
+    color: #f55a5a;
+
+    border: none;
+    padding: 0;
+    height: 0;
+    width: 0;
+    
+    background-color: white;
+    box-shadow: none;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0;
+}
+
