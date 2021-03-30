@@ -46,10 +46,10 @@
 
     <div class="modoPreparo">
         <h2>Modo de preparo</h2>
-        <button class="btn-mostrar-esconder" id="btn-preparo" onclick="ocultarPreparo()">MOSTRAR</button>        
+        <button class="btn-mostrar-esconder" onclick="hiddenModePreparation(this)">esconder</button>        
     </div>
     <div class="detalheReceita">
-        <ol class="passosPreparo ocultar">
+        <ol class="passosPreparo">
             {% for item in recipe.preparation %}
                 <li>{{item}}</li>
             {% endfor %}

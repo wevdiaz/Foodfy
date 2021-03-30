@@ -318,7 +318,8 @@ footer p {
     line-height: 14px;
     color: #999;
     background: none;
-    font-weight: bold; 
+    font-weight: bold;
+    text-transform: uppercase; 
     outline: none;
 
     position: relative;

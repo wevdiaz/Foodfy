@@ -28,34 +28,22 @@ function ocultarIngredientes() {
     }
 }
 
-function ocultarPreparo() {
-   
-    const list = document.querySelector(".passosPreparo")
-             .classList
-             .toggle("ocultar");
- 
-            
-             document.querySelector("#btn-preparo").innerHTML = "mostrar".toUpperCase();          
-     
-     if(list == false){      
-         document.querySelector("#btn-preparo").innerHTML = "esconder".toUpperCase();
-     }
- }
-
- function ocultarAdicional() {
-        const list = document.querySelector(".add-recipe")
-        .classList
-        .toggle("ocultar");
-
-    
-        document.querySelector("#btn-add").innerHTML = "mostrar".toUpperCase();          
-
-        if(list == false){      
-        document.querySelector("#btn-add").innerHTML = "esconder".toUpperCase();
-        }
- }
 
  /* --- Nova função mostrar/esconder  --- */
+
+ function hiddenModePreparation(button) {
+     const recipePreparation = document.querySelector(".detalheReceita .passosPreparo");
+
+     if (recipePreparation.classList.contains("ocultar")) {
+
+         recipePreparation.classList.remove("ocultar");
+         button.innerHTML = "esconder";
+     }
+     else {
+         recipePreparation.classList.add("ocultar");
+         button.innerHTML = "mostrar";
+     }
+ }
 
  function hiddenRecipeInformation(button) {     
     
