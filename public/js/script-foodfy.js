@@ -31,6 +31,20 @@ function ocultarIngredientes() {
 
  /* --- Nova função mostrar/esconder  --- */
 
+ function hiddenIngredients(button) {
+     const recipeIngredients = document.querySelector(".detalheReceita .lista-ingredientes");
+
+     if (recipeIngredients.classList.contains("ocultar")) {
+
+        recipeIngredients.classList.remove("ocultar");
+        button.innerHTML = "esconder";
+     }
+     else {
+        recipeIngredients.classList.add("ocultar");
+        button.innerHTML = "mostrar";
+     }
+ }
+
  function hiddenModePreparation(button) {
      const recipePreparation = document.querySelector(".detalheReceita .passosPreparo");
 

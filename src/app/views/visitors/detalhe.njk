@@ -30,10 +30,10 @@
 
     <div class="ingredientes">
         <h2>Ingredientes</h2>
-        <button class="btn-mostrar-esconder btn-ingredientes" onclick="ocultarIngredientes()">MOSTRAR</button>        
+        <button class="btn-mostrar-esconder" onclick="hiddenIngredients(this)">esconder</button>        
     </div>
     <div class="detalheReceita">
-        <ul class="lista-ingredientes ocultar">
+        <ul class="lista-ingredientes">
 
             {% for item in recipe.ingredients %}
                 <li>{{item}}</li>
