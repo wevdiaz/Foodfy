@@ -214,7 +214,7 @@ footer p {
 
 
 /* ------  Modal  --------*/
-.modal-overlay {
+.modalOverlay {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
@@ -232,6 +232,49 @@ footer p {
     background-color: #fff;
     margin: 20vh auto;
     position: relative;
+
+    border-radius: 8px;
+    box-shadow: 1px 1px 10px 3px #B16CD6, 0px 0px 8px 1px #BB94D0 ;
+}
+
+.modal .modal-img-recipe {
+    width: 660px;
+    height: 280px;
+    padding: 8px;
+    
+}
+
+.modal .modal-img-recipe img {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 8px;
+}
+
+.modal .modal-information {
+    padding: 8px;
+}
+
+.modal-information .btn-modal {
+    text-align: right;
+}
+
+.modal-information .btn-modal a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: var(--color-linkAndBtn);
+    padding: 8px;
+    color: #fff;
+    font-size: 0.8em;;
+
+    border-radius: 8px;
+    
+    transition: all 250ms;
+}
+
+.modal-information .btn-modal a:hover {
+    filter: brightness(130%);
 }
 
 .close-modal {
@@ -245,25 +288,10 @@ footer p {
 }
 
 /* ----  Modal Active -----*/
-.modal-overlay.active{
+.modalOverlay.active{
     opacity: 1;
     visibility: visible;
 }
-
-
-.modal-content {
-    text-align: center;
-}
-
-.modal-content .img-prato {    
-   width: 80%; 
-   margin-bottom: 35px; 
-   position: relative;
-   top: 30px; 
-   left: 52px;  
-    
-}
-
 
 /* === Page Detalhe ===*/
 .img-recipe img {
