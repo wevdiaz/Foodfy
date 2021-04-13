@@ -258,8 +258,10 @@ footer p {
     justify-content: space-between;
 }
 
-.modal-information .btn-modal {
-    text-align: right;
+.modal .modal-information p{
+    font-style: italic;
+    color: #777;
+    line-height: 26px;
 }
 
 .modal-information .btn-modal a {
@@ -288,6 +290,11 @@ footer p {
     bottom: 30px;
     left: 281px;
     cursor: pointer;
+}
+
+.close-modal:hover {
+    color: red;
+    font-weight: bold;
 }
 
 /* ----  Modal Active -----*/
