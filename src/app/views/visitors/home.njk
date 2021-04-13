@@ -1,5 +1,9 @@
 {% extends "visitors/layout.njk" %}
 
+    {% block head %}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% endblock %}
+
     {% block content %}
         
             <article class="intro">
@@ -25,6 +29,28 @@
                     </div>
                 {% endfor %}
 
+                <script src="/js/script-foodfy.js"></script>
+            </div>
+
+            <div class="modalOverlay active">
+                <div class="modal">
+                    <div class="modal-img-recipe">
+                        <img src="../../../../images/1614041942870-yakissoba.jpg" alt="yakissoba">
+                    </div>
+                    <div class="modal-information">
+                        <h3>Nome da receita</h3>
+                        <p>
+                            por Juca Alves
+                        </p>
+                        <div class="btn-modal">
+                            <a href="#">detalhes</a>
+                        </div>
+                    </div>
+
+                    <div class="close-modal">
+                        <span class="material-icons-outlined">fechar</span>
+                    </div>
+                </div>
             </div>
                     
    {% endblock %}
