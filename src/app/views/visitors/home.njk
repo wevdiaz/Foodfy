@@ -24,24 +24,24 @@
 
                         <div class="info-prato">
                             <h3>{{item.title}}</h3>
-                            <span class="info-chef">por {{item.chef_name}}</span>
+                            <span class="info-chef" data-id="{{item.id}}">por {{item.chef_name}}</span>
                         </div>
                     </div>
                 {% endfor %}
 
-                <script src="/js/script-foodfy.js"></script>
+                
             </div>
 
-            <div class="modalOverlay active">
+            <div class="modalOverlay">
                 <div class="modal">
                     <div class="modal-img-recipe">
                         <img src="../../../../images/1614041942870-yakissoba.jpg" alt="yakissoba">
                     </div>
                     <div class="modal-information">
-                        <h3>Nome da receita</h3>
-                        <p>
-                            por Juca Alves
-                        </p>
+                       <div>
+                            <h3>Nome da receita</h3>
+                            <p>por Juca Alves</p>
+                       </div>
                         <div class="btn-modal">
                             <a href="#">detalhes</a>
                         </div>
@@ -52,5 +52,6 @@
                     </div>
                 </div>
             </div>
-                    
+            
+            <script src="/js/script-foodfy.js"></script>
    {% endblock %}

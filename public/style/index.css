@@ -253,6 +253,9 @@ footer p {
 
 .modal .modal-information {
     padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .modal-information .btn-modal {
