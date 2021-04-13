@@ -1,25 +1,34 @@
 const receitas = document.querySelectorAll(".receita");
 
-const modalOverlay = document.querySelector(".modal-overlay");
+const modal = document.querySelector(".modalOverlay");
 const closeModal = document.querySelector(".close-modal");
 
 
 // === Modal  ====
 
-console.log(receitas);
-
-
-
 for (let receita of receitas) {    
     
     receita.addEventListener("click", function(){ 
 
-        const recipeID = receita.querySelector("input[name='id']").value;        
+        // const recipeID = receita.querySelector("input[name='id']").value;        
             
-        window.location.href = `/detalhe/${recipeID}`;                      
+        // window.location.href = `/detalhe/${recipeID}`;
+        
+        modal.classList.add("active");
+        console.log(receita);
+        const image = receita.querySelector(".img-prato img").src;
+        const titleRecipe = receita.querySelector(".info-prato h3").textContent;
+
+
+        console.log(titleRecipe);
+        
                 
     });
 }
+
+closeModal.addEventListener("click", function() {
+    modal.classList.remove("active");
+})
 
 // /* function hidden content of recipes */
 
