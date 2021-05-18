@@ -1,5 +1,9 @@
 const db = require("../../config/db");
-const { foundDate, checkItemAdd } = require("../../lib/utils");
+const { checkItemAdd } = require("../../lib/utils");
+
+const Base = require("./Base");
+
+Base.init({ table: "recipes"});
 
 module.exports = {
 
