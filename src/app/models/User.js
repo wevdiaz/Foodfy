@@ -39,58 +39,58 @@ module.exports = {
         return results.rows;
     },
 
-    async create(data) {
+    // async create(data) {
         
-        try {
+    //     try {
 
-            const query = `
-                INSERT INTO users (
-                    name,
-                    email,
-                    password,
-                    is_admin                    
-                ) VALUES ($1, $2, $3, $4)
-                RETURNING id
-            `
+    //         const query = `
+    //             INSERT INTO users (
+    //                 name,
+    //                 email,
+    //                 password,
+    //                 is_admin                    
+    //             ) VALUES ($1, $2, $3, $4)
+    //             RETURNING id
+    //         `
 
-            // senha será gerada via token
-            const passwordToken = crypto.randomBytes(4).toString("hex");
+    //         // senha será gerada via token
+    //         const passwordToken = crypto.randomBytes(4).toString("hex");
 
                       
-            const passwordHash = await hash(passwordToken, 8);
+    //         const passwordHash = await hash(passwordToken, 8);
 
-            const values = [
-                data.name,
-                data.email,
-                passwordHash,                
-                data.is_admin || false             
-            ]            
+    //         const values = [
+    //             data.name,
+    //             data.email,
+    //             passwordHash,                
+    //             data.is_admin || false             
+    //         ]            
 
-        const results = await db.query(query, values);
+    //     const results = await db.query(query, values);
 
-        //Envio
-        await mailer.sendMail({
-            to: data.email,
-            from: "no-reply@foodfy.com.br",
-            subject: "Olá! Seja bem Vindo ao Foodfy",
-            html: `<h2>Olá, ${data.name}</h2>
+    //     //Envio
+    //     await mailer.sendMail({
+    //         to: data.email,
+    //         from: "no-reply@foodfy.com.br",
+    //         subject: "Olá! Seja bem Vindo ao Foodfy",
+    //         html: `<h2>Olá, ${data.name}</h2>
 
-            <p> Seja bem vindo ao Foodfy! Você agora poderá criar receitas em nosso site.</p>
+    //         <p> Seja bem vindo ao Foodfy! Você agora poderá criar receitas em nosso site.</p>
 
-            <p>
-                Para você fazer login em nossa aplicação, você poderá utiizar essa <strong>Senha</strong>: ${passwordToken}
-            </p>
+    //         <p>
+    //             Para você fazer login em nossa aplicação, você poderá utiizar essa <strong>Senha</strong>: ${passwordToken}
+    //         </p>
                        
-            `
-        });
+    //         `
+    //     });
 
-        return results.rows[0].id;
+    //     return results.rows[0].id;
 
-        }catch(err) {
-            console.error(err);
-            console.log("Houve um erro inesperado!")
-        }
-    },
+    //     }catch(err) {
+    //         console.error(err);
+    //         console.log("Houve um erro inesperado!")
+    //     }
+    // },
 
     async update(id, fields) {
         let query = "UPDATE users SET";
