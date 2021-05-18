@@ -7,24 +7,30 @@ const fs = require("fs");
 const Recipe = require("../models/recipe");
 const File = require("../models/File");
 
+const Base = require("./Base");
+
+Base.init({ table: "users"});
+
 module.exports = {
 
-    async findOne(filters) {
+    ...Base,
 
-        let query = "SELECT * FROM users";
+    // async findOne(filters) {
 
-        Object.keys(filters).map(key => {
-            query = `${query}
-                ${key}
-            `
-            Object.keys(filters[key]).map(field => {
-                query = `${query} ${field} = '${filters[key][field]}'`
-            });
-        });
+    //     let query = "SELECT * FROM users";
 
-        const results = await db.query(query);
-        return results.rows[0];
-    },
+    //     Object.keys(filters).map(key => {
+    //         query = `${query}
+    //             ${key}
+    //         `
+    //         Object.keys(filters[key]).map(field => {
+    //             query = `${query} ${field} = '${filters[key][field]}'`
+    //         });
+    //     });
+
+    //     const results = await db.query(query);
+    //     return results.rows[0];
+    // },
 
     async findAllUsers() {
         const query = "SELECT * FROM users ORDER BY name ASC";
