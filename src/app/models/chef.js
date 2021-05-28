@@ -1,8 +1,13 @@
+const db = require("../../config/db");
+const Base = require("./Base");
+
 const { foundDate } = require("../../lib/utils");
 
-const db = require("../../config/db");
+Base.init({ table: "chefs"});
 
 module.exports = {
+
+    ...Base,
 
     all() {
 

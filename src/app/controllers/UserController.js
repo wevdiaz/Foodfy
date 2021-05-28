@@ -10,7 +10,7 @@ async function findUserSession(id) {
 module.exports = {    
 
     async list(req, res) {
-        const users = await User.findAllUsers();
+        const users = await User.showAllUsersInOrders();
         
         const userSession =  await findUserSession(req.session.userID);                 
         
@@ -39,7 +39,7 @@ module.exports = {
         
         await User.create(req.body);
         
-        const users = await User.findAllUsers();
+        const users = await User.showAllUsersInOrder();
         const userSession = await findUserSession(req.session.userID);
 
         return res.render("admin/user/list", {
@@ -67,7 +67,7 @@ module.exports = {
             });
 
             const userSession =  await findUserSession(req.session.userID);
-            const users = await User.findAllUsers();
+            const users = await User.showAllUsersInOrder();
            
             return res.render("admin/user/list", {
                 users,
@@ -89,7 +89,7 @@ module.exports = {
            
             await User.delete(req.body.id);  
             
-            const users = await User.findAllUsers();
+            const users = await User.showAllUsersInOrder();
             const userSession =  await findUserSession(req.session.userID);
 
             return res.render("admin/user/list", {

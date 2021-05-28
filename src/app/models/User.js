@@ -32,9 +32,8 @@ module.exports = {
     //     return results.rows[0];
     // },
 
-    async findAllUsers() {
+    async showAllUsersInOrder() {
         const query = "SELECT * FROM users ORDER BY name ASC";
-
         const results = await db.query(query);
         return results.rows;
     },
