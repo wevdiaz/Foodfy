@@ -1,11 +1,12 @@
 const db = require("../../config/db");
-const { checkItemAdd } = require("../../lib/utils");
-
 const Base = require("./Base");
+
+const { checkItemAdd } = require("../../lib/utils");
 
 Base.init({ table: "recipes"});
 
 module.exports = {
+    ...Base,
 
     all(){
 
@@ -82,14 +83,16 @@ module.exports = {
         return db.query(`DELETE FROM recipes WHERE id = $1`, [id]);
     },
 
-    files(id) {
-        return db.query(`
-            SELECT recipe_files.*,
-            files.name AS name, files.path AS path, files.id AS file_id
-            FROM recipe_files
-            LEFT JOIN files ON (recipe_files.file_id = files.id)
-            WHERE recipe_id = $1
-        `, [id]);
+    async files(id) {
+        const results = await db.query(`
+                        SELECT recipe_files.*,
+                        files.name AS name, files.path AS path, files.id AS file_id
+                        FROM recipe_files
+                        LEFT JOIN files ON (recipe_files.file_id = files.id)
+                        WHERE recipe_id = $1
+                    `, [id]);
+
+        return results.rows[0];
     },
 
     chefsSelectOptions() {
