@@ -95,6 +95,18 @@ module.exports = {
         return results.rows[0];
     },
 
+    async allFiles(id) {
+        const results = await db.query(`
+                        SELECT recipe_files.*,
+                        files.name AS name, files.path AS path, files.id AS file_id
+                        FROM recipe_files
+                        LEFT JOIN files ON (recipe_files.file_id = files.id)
+                        WHERE recipe_id = $1
+                    `, [id]);
+
+        return results.rows;
+    },    
+
     chefsSelectOptions() {
         return db.query(`SELECT name, id FROM chefs`);
     },

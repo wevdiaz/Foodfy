@@ -20,26 +20,26 @@ module.exports = {
         return results.rows;        
     },
 
-    create(data) {
+    // create(data) {
 
-        const query = `
-            INSERT INTO chefs (
-                name,
-                file_id,
-                created_at
-            ) VALUES ($1, $2, $3)
-            RETURNING id
-        `
+    //     const query = `
+    //         INSERT INTO chefs (
+    //             name,
+    //             file_id,
+    //             created_at
+    //         ) VALUES ($1, $2, $3)
+    //         RETURNING id
+    //     `
 
-        const values = [
-            data.name,
-            data.file_id,
-            foundDate(Date.now()).iso
-        ]
+    //     const values = [
+    //         data.name,
+    //         data.file_id,
+    //         foundDate(Date.now()).iso
+    //     ]
 
-        return db.query(query, values);
+    //     return db.query(query, values);
 
-    },
+    // },
 
     async findWithTotalRecipe(id) {
 
@@ -53,27 +53,27 @@ module.exports = {
         return results.rows[0];        
     },
 
-    update(data) {
+    // update(data) {
 
-        const query = `
-            UPDATE chefs SET
-                name=($1),
-                file_id=($2)
-            WHERE id = $3
-        `
+    //     const query = `
+    //         UPDATE chefs SET
+    //             name=($1),
+    //             file_id=($2)
+    //         WHERE id = $3
+    //     `
 
-        const values = [
-            data.name,
-            data.file_id,
-            data.id
-        ]
+    //     const values = [
+    //         data.name,
+    //         data.file_id,
+    //         data.id
+    //     ]
 
-        return db.query(query, values);
-    },
+    //     return db.query(query, values);
+    // },
 
-    delete(id) {
-        return db.query(`DELETE FROM chefs WHERE id = $1`, [id]);
-    },
+    // delete(id) {
+    //     return db.query(`DELETE FROM chefs WHERE id = $1`, [id]);
+    // },
     
     async findRecipes(id) {
 

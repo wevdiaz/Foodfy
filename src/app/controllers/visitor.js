@@ -12,9 +12,7 @@ module.exports = {
             let recipes = results.rows;
 
             async function getRecipeImage(recipeID) {
-                const results = await Recipe.files(recipeID);
-                const file = results.rows[0];
-                
+                const file = await Recipe.files(recipeID);                
                 return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
             }        
 

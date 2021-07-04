@@ -93,8 +93,8 @@ module.exports = {
         try {
             const { recipe } = req;            
 
-            results = await Recipe.files(recipe.id);
-            let files = results.rows;
+            let files = await Recipe.allFiles(recipe.id);
+            // let files = results.rows;
             files = files.map( file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`

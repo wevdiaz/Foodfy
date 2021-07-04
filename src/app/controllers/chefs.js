@@ -105,21 +105,23 @@ module.exports = {
 
        try {
             const { filename, path } = req.files[0];
-
+                   
+            
             // let results = await File.create({...req.files[0]});
-            let results = await File.create({ filename, path });
-            const file = results.rows[0].id; // verificar o retorno usando a função do Base agora
+            const file = await File.create({ name: filename, path: path });
+            //const file = results.rows[0].id; // verificar o retorno usando a função do Base agora
             
             const data = {
             name: req.body.name,
-            file_id: file
+            file_id: file,
+            created_at: foundDate(Date.now()).iso
             }      
     
-            results = await Chef.create(data);
-            const id = results.rows[0].id;
+            const chefId = await Chef.create(data);
+            // const id = results.rows[0].id;
             
             
-            const chef = await findChef(req, id);
+            const chef = await findChef(req, chefId);
             const userSession = await findUserSession(req.session.userID);            
             
             return res.render("admin/chefs/show", {
@@ -137,19 +139,18 @@ module.exports = {
     async edit(req, res) {
 
         try {
-            let results = await Chef.find(req.params.id);
-            let chef = results.rows[0];
+            let chef = await Chef.find(req.params.id);
+            // let chef = results.rows[0];
 
             if(!chef) return res.send("Chef not found!");        
 
-            results = await Chef.getImageChef(chef.id);
-            let avatarChef = results.rows[0];
-            avatarChef = `${req.protocol}://${req.headers.host}${avatarChef.image.replace("public", "")}`;
+            let avatarChef = await Chef.getImageChef(chef.id);            
+            chef.avatar = `${req.protocol}://${req.headers.host}${avatarChef.image.replace("public", "")}`;
             
-            chef = {
-                ...chef,
-                avatar: avatarChef           
-            }              
+            // chef = {
+            //     ...chef,
+            //     avatar: avatarChef           
+            // }              
 
             return res.render("admin/chefs/edit", { chef });
 
@@ -161,37 +162,37 @@ module.exports = {
 
     async put(req, res) {
 
-        try {            
-
+        try {   
             let file = req.body.file_id;              
 
             if (req.files.length != 0) {
-                let results = await File.create({...req.files[0]});
-                file = results.rows[0].id;            
+                const { filename, path } = req.files[0];
+                file = await File.create({ name: filename, path: path });
+                // file = results.rows[0].id;            
             }
 
             const data = {
                 name: req.body.name,
-                file_id: file,
-                id: req.body.id
+                file_id: file
+                // id: req.body.id
             }          
             
-            await Chef.update(data);
+            await Chef.update(req.body.id, data);
 
             if (req.body.removed_avatar != "" && req.files.length == 1) {
                 const removedFile = req.body.removed_avatar;
                 await File.delete(removedFile);
             }
 
-            const results = await Chef.find(req.body.id);
-            let chef = results.rows[0];
+            let chef = await Chef.find(req.body.id);
+            // let chef = results.rows[0];
 
-            const avatarChef = await findImageChef(req, req.body.id);
-
-            chef = {
-                ...chef,
-                avatar: avatarChef
-            }
+            chef.avatar = await findImageChef(req, req.body.id);
+            // const avatarChef = await findImageChef(req, req.body.id);
+            // chef = {
+            //     ...chef,
+            //     avatar: avatarChef
+            // }
 
             const userSession = await findUserSession(req.session.userID);
             
@@ -217,8 +218,7 @@ module.exports = {
 
         }catch(err) {
             console.error(err);
-        }
-        
+        }        
     },
     
     deleted_point(req, res) {
