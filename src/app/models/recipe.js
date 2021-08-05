@@ -8,14 +8,15 @@ Base.init({ table: "recipes"});
 module.exports = {
     ...Base,
 
-    all(){
+    async all(){
 
-        return db.query(`SELECT recipes.*, chefs.name AS chef_name 
+        const results = await db.query(`SELECT recipes.*, chefs.name AS chef_name 
                   FROM recipes
                   LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
                   ORDER BY created_at DESC
                   `);
-                          
+
+        return results.rows;                          
     },
 
     create(data){
@@ -46,13 +47,15 @@ module.exports = {
 
     },
 
-    find(id){
+    async findRecipe(id){
 
-        return db.query(`
+        const results = await db.query(`
             SELECT recipes.*, chefs.name AS chef_name 
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-            WHERE recipes.id= $1`,[id]);
+            WHERE recipes.id= $1`,[id]);        
+            
+        return results.rows[0];
     },
 
     update(data){
