@@ -19,33 +19,33 @@ module.exports = {
         return results.rows;                          
     },
 
-    create(data){
+    // create(data){
 
-        const query = `
-            INSERT INTO recipes (
-                chef_id,                
-                title,
-                ingredients,
-                preparation,
-                information,
-                user_id                               
-            ) VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING id
-        `
+    //     const query = `
+    //         INSERT INTO recipes (
+    //             chef_id,                
+    //             title,
+    //             ingredients,
+    //             preparation,
+    //             information,
+    //             user_id                               
+    //         ) VALUES ($1, $2, $3, $4, $5, $6)
+    //         RETURNING id
+    //     `
 
-        const values = [
-            data.chef_id,            
-            data.title,
-            checkItemAdd(data.ingredients),
-            checkItemAdd(data.preparation),
-            data.information,
-            data.user_id                       
-        ]
+    //     const values = [
+    //         data.chef_id,            
+    //         data.title,
+    //         checkItemAdd(data.ingredients),
+    //         checkItemAdd(data.preparation),
+    //         data.information,
+    //         data.user_id                       
+    //     ]
 
 
-        return db.query(query, values);
+    //     return db.query(query, values);
 
-    },
+    // },
 
     async findRecipe(id){
 
@@ -110,18 +110,21 @@ module.exports = {
         return results.rows;
     },    
 
-    chefsSelectOptions() {
-        return db.query(`SELECT name, id FROM chefs`);
+    async chefsSelectOptions() {
+        const results = await db.query(`SELECT name, id FROM chefs`);
+        return results.rows;
     },
 
-    findBy(filter) {
+    async findBy(filter) {
 
-        return db.query(`
+        const results = await db.query(`
             SELECT recipes.*, chefs.name AS name
             FROM recipes
             LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             WHERE recipes.title ILIKE '%${filter}%'
             ORDER BY recipes.updated_at DESC`);
+
+        return results.rows;
     },
 
     paginate(params) {

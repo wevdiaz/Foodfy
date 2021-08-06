@@ -5,23 +5,25 @@ Base.init({ table: "recipe_files" });
 
 module.exports = {
 
-    create(data) {
+    ...Base,
 
-        const query = `
-            INSERT INTO recipe_files (
-                recipe_id,
-                file_id
-            ) VALUES ($1, $2)
-            RETURNING id
-        `
+    // create(data) {
 
-        const values = [
-            data.recipeID,
-            data.fileID
-        ]
+    //     const query = `
+    //         INSERT INTO recipe_files (
+    //             recipe_id,
+    //             file_id
+    //         ) VALUES ($1, $2)
+    //         RETURNING id
+    //     `
 
-        return db.query(query, values);
-    },
+    //     const values = [
+    //         data.recipeID,
+    //         data.fileID
+    //     ]
+
+    //     return db.query(query, values);
+    // },
 
     delete(id) {
         return db.query(`

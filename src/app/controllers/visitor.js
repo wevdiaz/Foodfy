@@ -208,12 +208,16 @@ module.exports = {
     
             if (filter) {
 
-                const results = await Recipe.findBy(filter);
-                let recipes = results.rows;
+                let recipes = await Recipe.findBy(filter);
+                
+                // const results = await Recipe.findBy(filter);
+                // let recipes = results.rows;
 
                 async function getRecipeImage(recipeID) {
-                    const results = await Recipe.files(recipeID);
-                    const file = results.rows[0];
+                    const file = await Recipe.files(recipeID);
+                    
+                    // const results = await Recipe.files(recipeID);
+                    // const file = results.rows[0];
 
                     return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
                 }
@@ -229,10 +233,8 @@ module.exports = {
             }  
             else {
 
-                await Recipe.all();
-    
-                return res.render("visitors/search", { filter });
-                
+                await Recipe.all();    
+                return res.render("visitors/search", { filter });                
             }
             
         }catch(err) {

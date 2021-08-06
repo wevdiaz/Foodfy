@@ -5,6 +5,8 @@ const File = require("../../app/models/File");
 const RecipeFiles = require("../models/RecipeFiles");
 const User = require("../models/User");
 
+const { checkItemAdd } = require("../../lib/utils");
+
 async function findUserSession(id) {
     const userSession = await User.findOne({ where: { id }});
     return userSession;
@@ -34,14 +36,13 @@ module.exports = {
                         page
                     }
     
-                    const results = await Recipe.chefsSelectOptions();
-                    const options = results.rows;
-    
-                    async function getRecipeImage(recipeID) {
-                        const results = await Recipe.files(recipeID);
-                        const file = results.rows[0];
+                    // const results = await Recipe.chefsSelectOptions();
+                    // const options = results.rows;
+
+                    const options = await Recipe.chefsSelectOptions();
                         
-    
+                    async function getRecipeImage(recipeID) {
+                        const file = await Recipe.files(recipeID);    
                         return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
                     }
     
@@ -62,8 +63,7 @@ module.exports = {
             }
         }
 
-        const results = await Recipe.all();
-        const recipesTotal = results.rows;
+        const recipesTotal = await Recipe.all();        
                 
         if (recipesTotal == "") {
             return res.render("admin/recipes/index", { recipes: recipesTotal.length });
@@ -77,8 +77,8 @@ module.exports = {
     async create(req,res){
 
         try {
-            const results = await Recipe.chefsSelectOptions();
-            const options = results.rows;
+            const options = await Recipe.chefsSelectOptions();
+            // const options = results.rows;
            
             return res.render("admin/recipes/create", {chefOptions: options });
 
@@ -103,7 +103,6 @@ module.exports = {
             const imageFeatured = files[0].src;           
 
             const id = req.session.userID;
-
             const userSession = await User.findOne({ where: { id }});
             
             return res.render("admin/recipes/show", { recipe, imageFeatured, files, userSession } );
@@ -118,29 +117,52 @@ module.exports = {
         
         try {      
            
-            const datasRecipe = {
-                ...req.body,
-                user_id: req.session.userID
-            }            
+            // const datasRecipe = {
+            //     ...req.body,
+            //     user_id: req.session.userID
+            // } 
+            
+            // console.log(datasRecipe);
+            
 
-            let results = await Recipe.create(datasRecipe);
-            const recipeID = results.rows[0].id;   
+            const datasRecipe = {
+                title: req.body.title,
+                chef_id: req.body.chef_id,
+                ingredients: checkItemAdd(req.body.ingredients),
+                preparation: checkItemAdd(req.body.preparation),
+                information: req.body.information,
+                user_id: req.session.userID
+            }
+
+            const recipeID = await Recipe.create(datasRecipe);
+            // let results = await Recipe.create(datasRecipe);
+            // const recipeID = results.rows[0].id;   
 
             const filesPromise = req.files.map(async function(file){
+
+                const { filename, path } = file;
                 
-                const results = await File.create({...file})
-                let fileID= results.rows[0].id;
+                const fileID = await File.create({ name: filename, path });
+                // const results = await File.create({...file})
+                // let fileID= results.rows[0].id;
+                
+                // const data = {
+                //     recipeID: recipeID,
+                //     fileID
+                // } 
                 
                 const data = {
-                    recipeID: recipeID,
-                    fileID
-                }                                            
+                    recipe_id: recipeID,
+                    file_id: fileID
+                }   
 
                 await RecipeFiles.create(data);
                 
             });
             
             await Promise.all(filesPromise);
+
+            return;
 
             let result = await Recipe.find(recipeID);
             const recipe = result.rows[0];

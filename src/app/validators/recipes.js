@@ -16,8 +16,7 @@ function checkAllFields(body) {
 async function post(req, res, next) {
     let fillAllFields = checkAllFields(req.body);
 
-    const results = await Recipe.chefsSelectOptions();
-    const options = results.rows;   
+    const options = await Recipe.chefsSelectOptions();      
 
     if (fillAllFields) {
 
@@ -41,9 +40,8 @@ async function post(req, res, next) {
 }
 
 async function show(req, res, next) {
-    let results = await Recipe.find(req.params.id);
-    const recipe = results.rows[0];
-
+    const recipe = await Recipe.findRecipe(req.params.id);
+    
     if (!recipe) {
         return res.render("admin/recipes/index", {
             error: "Receita não encontrada"
