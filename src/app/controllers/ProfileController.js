@@ -58,20 +58,20 @@ module.exports = {
                     }
 
                     async function getRecipeImage(recipeID) {
-                        const results = await Recipe.files(recipeID);
-                        const file = results.rows[0];
+                        const file = await Recipe.files(recipeID);
+                        // const file = results.rows[0];
 
                         return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
                     }
 
                     async function getNameChef(recipeUser_id) {
-                        const results =  await Recipe.findByUserRecipe(recipeUser_id);                        
-                        return results.rows[0].chef_name;
+                        const results =  await Recipe.findRecipe(recipeUser_id);                                              
+                        return results.chef_name;
                     }
 
                     const recipesPromises = recipes.map(async function(recipe) {
                         recipe.imageFeatured = await getRecipeImage(recipe.id);
-                        recipe.chef_name = await getNameChef(recipe.user_id);
+                        recipe.chef_name = await getNameChef(recipe.id);
                         return recipe;
                     });
 
@@ -85,8 +85,8 @@ module.exports = {
             }
         }
 
-        const results = await Recipe.findByUserRecipe(id);
-        const recipesTotal = results.rows;
+        const recipesTotal = await Recipe.findRecipe(id);
+        // const recipesTotal = results.rows;
 
         if (recipesTotal == "") {
             return res.render("admin/user/my-recipes", { recipes: recipesTotal.length });
