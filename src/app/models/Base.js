@@ -53,9 +53,7 @@ const Base = {
                 values.push(`'${fields[key]}'`);
             });
             
-            console.log(keys);
-            console.log(values);
-            
+                        
             const query = `INSERT INTO ${this.table} (${keys.join(",")})
                     VALUES (${values.join(",")})
                     RETURNING id`;

@@ -19,33 +19,33 @@ module.exports = {
         return results.rows;                          
     },
 
-    // create(data){
+    async createRecipe(data){
 
-    //     const query = `
-    //         INSERT INTO recipes (
-    //             chef_id,                
-    //             title,
-    //             ingredients,
-    //             preparation,
-    //             information,
-    //             user_id                               
-    //         ) VALUES ($1, $2, $3, $4, $5, $6)
-    //         RETURNING id
-    //     `
+        const query = `
+            INSERT INTO recipes (
+                chef_id,                
+                title,
+                ingredients,
+                preparation,
+                information,
+                user_id                               
+            ) VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING id
+        `
 
-    //     const values = [
-    //         data.chef_id,            
-    //         data.title,
-    //         checkItemAdd(data.ingredients),
-    //         checkItemAdd(data.preparation),
-    //         data.information,
-    //         data.user_id                       
-    //     ]
+        const values = [
+            data.chef_id,            
+            data.title,
+            checkItemAdd(data.ingredients),
+            checkItemAdd(data.preparation),
+            data.information,
+            data.user_id                       
+        ]
 
 
-    //     return db.query(query, values);
-
-    // },
+        const results = await db.query(query, values);
+        return results.rows[0].id;
+    },
 
     async findRecipe(id){
 
@@ -185,11 +185,11 @@ module.exports = {
 
     },
 
-    findByUserRecipe(id) {
-        return db.query(`
-            SELECT recipes.*, chefs.name AS chef_name
-            FROM recipes
-            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-            WHERE user_id = $1`, [id]);
-    }
+    // findByUserRecipe(id) {
+    //     return db.query(`
+    //         SELECT recipes.*, chefs.name AS chef_name
+    //         FROM recipes
+    //         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+    //         WHERE user_id = $1`, [id]);
+    // }
 }
