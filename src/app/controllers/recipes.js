@@ -117,24 +117,25 @@ module.exports = {
         
         try {      
            
-            // const datasRecipe = {
-            //     ...req.body,
-            //     user_id: req.session.userID
-            // } 
+            const datasRecipe = {
+                ...req.body,
+                user_id: req.session.userID
+            } 
             
             // console.log(datasRecipe);
             
 
-            const datasRecipe = {
-                title: req.body.title,
-                chef_id: req.body.chef_id,
-                ingredients: checkItemAdd(req.body.ingredients),
-                preparation: checkItemAdd(req.body.preparation),
-                information: req.body.information,
-                user_id: req.session.userID
-            }
+            // const datasRecipe = {
+            //     title: req.body.title,
+            //     chef_id: req.body.chef_id,
+            //     ingredients: checkItemAdd(req.body.ingredients),
+            //     preparation: checkItemAdd(req.body.preparation),
+            //     information: req.body.information,
+            //     user_id: req.session.userID
+            // }
 
-            const recipeID = await Recipe.create(datasRecipe);
+            const recipeID = await Recipe.createRecipe(datasRecipe);
+            // const recipeID = await Recipe.create(datasRecipe);
             // let results = await Recipe.create(datasRecipe);
             // const recipeID = results.rows[0].id;   
 
@@ -155,20 +156,19 @@ module.exports = {
                     recipe_id: recipeID,
                     file_id: fileID
                 }   
-
+                
                 await RecipeFiles.create(data);
                 
             });
             
             await Promise.all(filesPromise);
 
-            return;
+            
+            const recipe = await Recipe.findRecipe(recipeID);
+            // const recipe = result.rows[0];
 
-            let result = await Recipe.find(recipeID);
-            const recipe = result.rows[0];
-
-            result = await Recipe.files(recipe.id);
-            let files = result.rows;
+            let files = await Recipe.allFiles(recipe.id);
+            // let files = result.rows;
 
             files = files.map( file => ({
                 ...file,
@@ -194,7 +194,7 @@ module.exports = {
 
     async edit(req, res){
 
-        try {
+        try {// ####  Começar a mexer nesta parte  ####
             const { recipe } = req;
 
             let results = await Recipe.chefsSelectOptions();
