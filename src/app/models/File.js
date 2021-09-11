@@ -45,8 +45,9 @@ module.exports = {
         
     },
 
-    getIdFiles(id) {
-        return db.query(`SELECT * FROM recipe_files WHERE id = $1 `, [id]);
+    async getIdFiles(id) {
+        const results =  await db.query(`SELECT * FROM recipe_files WHERE id = $1 `, [id]);
+        return results.rows[0].file_id;
     }    
 
 }

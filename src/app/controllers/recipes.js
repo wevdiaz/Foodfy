@@ -197,12 +197,12 @@ module.exports = {
         try {// ####  Começar a mexer nesta parte  ####
             const { recipe } = req;
 
-            let results = await Recipe.chefsSelectOptions();
-            const options = results.rows;
+            const options = await Recipe.chefsSelectOptions();
+            // const options = results.rows;
 
-        
-            results = await Recipe.files(recipe.id);
-            let files = results.rows;
+            let files = await Recipe.allFiles(recipe.id);            
+            // let files = await Recipe.files(recipe.id);
+            // let files = results.rows;
             files = files.map( file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -224,12 +224,14 @@ module.exports = {
             if (req.files.length != 0 ) {
 
                 const newFilesPromise = req.files.map(async function(file) {
-                    const results = await File.create(file);
-                    const fileID = results.rows[0].id;
+                    const { filename, path } = file;
+                    const fileID = await File.create({name: filename, path: path });
+                    // const results = await File.create(file);
+                    // const fileID = results.rows[0].id;    { name: filename, path: path }
 
                     const data = {
-                        recipeID: req.body.id,
-                        fileID
+                        recipe_id: req.body.id,
+                        file_id: fileID
                     }
 
                     await RecipeFiles.create(data);
@@ -245,8 +247,9 @@ module.exports = {
 
                 const removedFilesPromise = removedFiles.map(async function(id) {
 
-                    const result  = await File.getIdFiles(id);
-                    const fileIdDelete = result.rows[0].file_id;
+                    const fileIdDelete  = await File.getIdFiles(id);
+                    // const result  = await File.getIdFiles(id);
+                    // const fileIdDelete = result.rows[0].file_id;
                                     
                     RecipeFiles.delete(id)
                     File.delete(fileIdDelete)
@@ -256,12 +259,14 @@ module.exports = {
             }
             
             await Recipe.update(req.body);
+            
+            const recipe = await Recipe.findRecipe(req.body.id);
+            // let results = await Recipe.find(req.body.id);
+            // const recipe = results.rows[0];
 
-            let results = await Recipe.find(req.body.id);
-            const recipe = results.rows[0];
-
-            results = await Recipe.files(req.body.id);
-            let files = results.rows;
+            let files = await Recipe.allFiles(req.body.id);
+            // results = await Recipe.files(req.body.id);
+            // let files = results.rows;
 
             files = files.map( file => ({
                 ...file,
@@ -287,7 +292,7 @@ module.exports = {
 
     async delete(req, res){
 
-       try {
+       try {//   ###   Começar o Delete  ###
             let data = {
                 id: req.body.id,
                 files_recipes: req.body.files_recipes.split(",")
