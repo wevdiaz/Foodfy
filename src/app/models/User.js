@@ -115,9 +115,10 @@ module.exports = {
     async delete(id) {
         
         try {
-            let results = await Recipe.findByUserRecipe(id);
-            const recipes = results.rows;
-
+            const recipes = await Recipe.findByUserRecipe(id);
+            // let results = await Recipe.findByUserRecipe(id);
+            // const recipes = results.rows;
+            
             const allFilesPromise = recipes.map(recipe => Recipe.files(recipe.id));
 
             let promiseResults = await Promise.all(allFilesPromise);

@@ -82,9 +82,9 @@ module.exports = {
         return db.query(query, values);
     },
 
-    delete(id){
-        return db.query(`DELETE FROM recipes WHERE id = $1`, [id]);
-    },
+    // delete(id){
+    //     return db.query(`DELETE FROM recipes WHERE id = $1`, [id]);
+    // },
 
     async files(id) {
         const results = await db.query(`
@@ -185,11 +185,13 @@ module.exports = {
 
     },
 
-    // findByUserRecipe(id) {
-    //     return db.query(`
-    //         SELECT recipes.*, chefs.name AS chef_name
-    //         FROM recipes
-    //         LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-    //         WHERE user_id = $1`, [id]);
-    // }
+    async findByUserRecipe(id) {
+        const results = await db.query(`
+            SELECT recipes.*, chefs.name AS chef_name
+            FROM recipes
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            WHERE user_id = $1`, [id]);
+        
+            return results.rows;
+    }
 }
