@@ -52,6 +52,7 @@ module.exports = {
             id,
             async callback(recipes) {
                 try {
+                    console.log(recipes[0]);
                     const pagination = {
                         total: Math.ceil(recipes[0].total / limit),
                         page
@@ -85,7 +86,7 @@ module.exports = {
             }
         }
 
-        const recipesTotal = await Recipe.findRecipe(id);
+        const recipesTotal = await Recipe.findByUserRecipe(id);
         // const recipesTotal = results.rows;
 
         if (recipesTotal == "") {

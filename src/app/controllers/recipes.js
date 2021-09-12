@@ -292,7 +292,7 @@ module.exports = {
 
     async delete(req, res){
 
-       try {//   ###   Começar o Delete  ###
+       try {
             let data = {
                 id: req.body.id,
                 files_recipes: req.body.files_recipes.split(",")
@@ -301,11 +301,12 @@ module.exports = {
             data.files_recipes.splice( (data.files_recipes.length - 1), 1);          
     
             const filesRemovedPromise = data.files_recipes.map(async function(file){
-                const results = await RecipeFiles.getIdFiles(file);
-                const RemoveFile = results.rows[0].file_id;            
+                const removeFile = await RecipeFiles.getIdFiles(file);
+                // const results = await RecipeFiles.getIdFiles(file);
+                // const RemoveFile = results.rows[0].file_id;            
     
                 RecipeFiles.delete(file);
-                File.delete(RemoveFile);  
+                File.delete(removeFile);  
             });
     
             await Promise.all(filesRemovedPromise); 
