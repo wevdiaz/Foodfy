@@ -25,10 +25,10 @@ module.exports = {
     //     return db.query(query, values);
     // },
 
-    delete(id) {
-        return db.query(`
-            DELETE FROM recipe_files WHERE id = $1 `, [id]);
-    },
+    // delete(id) {
+    //     return db.query(`
+    //         DELETE FROM recipe_files WHERE id = $1 `, [id]);
+    // },
 
     async getIdFiles(id) {        
         const results =  await db.query(`SELECT * FROM recipe_files WHERE id = $1 `, [id]);
