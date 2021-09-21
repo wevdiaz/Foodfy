@@ -82,7 +82,7 @@ module.exports = {
                 recipes = await Promise.all(recipesPromises);
 
                 chef.total_recipes = recipes.length;
-
+                
                 const id = req.session.userID;
                 const userSession = await User.findOne({ where: { id }});
                 
@@ -92,6 +92,7 @@ module.exports = {
 
                 const id = req.session.userID;
                 const userSession = await User.findOne({ where: { id }});
+                chef.total_recipes = 0;
 
                 return res.render("admin/chefs/show", { chef, chefRecipes: recipes, userSession });
             }

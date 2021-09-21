@@ -51,8 +51,7 @@ module.exports = {
             offset,
             id,
             async callback(recipes) {
-                try {
-                    console.log(recipes[0]);
+                try {                    
                     const pagination = {
                         total: Math.ceil(recipes[0].total / limit),
                         page
