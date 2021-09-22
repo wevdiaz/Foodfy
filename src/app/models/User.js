@@ -119,14 +119,18 @@ module.exports = {
             // let results = await Recipe.findByUserRecipe(id);
             // const recipes = results.rows;
             
-            const allFilesPromise = recipes.map(recipe => Recipe.files(recipe.id));
+            const allFilesPromise = recipes.map(recipe => Recipe.allFiles(recipe.id));
 
             let promiseResults = await Promise.all(allFilesPromise);
-
+            // console.log(promiseResults);
+            // return;
             await db.query("DELETE FROM users WHERE id= $1", [id]);
-
+            
             promiseResults.map(results => {
-                results.rows.map(result => {                   
+                // console.log(results);
+                // console.log("------------------------");
+                // console.log(results.rows);
+                results.map(result => {                   
                     File.delete(result.file_id)
                 });
             });
