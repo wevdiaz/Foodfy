@@ -362,7 +362,9 @@ footer p {
 
     position: relative;
     left: 8px; 
-    top: 20px;        
+    top: 20px;
+    
+    cursor: pointer;
 }
 
 .ingredientes,

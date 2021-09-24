@@ -1,8 +1,8 @@
 const db = require("../../config/db");
-const crypto = require("crypto");
-const mailer = require("../../lib/mailer");
-const { hash } = require("bcryptjs");
-const fs = require("fs");
+// const crypto = require("crypto");
+// const mailer = require("../../lib/mailer");
+// const { hash } = require("bcryptjs");
+// const fs = require("fs");
 
 const Recipe = require("../models/recipe");
 const File = require("../models/File");
