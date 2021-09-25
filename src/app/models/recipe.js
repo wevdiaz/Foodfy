@@ -80,11 +80,7 @@ module.exports = {
         ]
 
         return db.query(query, values);
-    },
-
-    // delete(id){
-    //     return db.query(`DELETE FROM recipes WHERE id = $1`, [id]);
-    // },
+    },    
 
     async files(id) {
         const results = await db.query(`
