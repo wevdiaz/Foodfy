@@ -1,11 +1,7 @@
-
-// const db = require("../../config/db");
 const Recipe = require("../models/recipe");
 const File = require("../../app/models/File");
 const RecipeFiles = require("../models/RecipeFiles");
 const User = require("../models/User");
-
-// const { checkItemAdd } = require("../../lib/utils");
 
 async function findUserSession(id) {
     const userSession = await User.findOne({ where: { id }});
@@ -34,10 +30,7 @@ module.exports = {
                     const pagination = {                        
                         total: Math.ceil(recipes[0].total / limit),
                         page
-                    }
-    
-                    // const results = await Recipe.chefsSelectOptions();
-                    // const options = results.rows;
+                    }    
 
                     const options = await Recipe.chefsSelectOptions();
                         
@@ -78,14 +71,12 @@ module.exports = {
 
         try {
             const options = await Recipe.chefsSelectOptions();
-            // const options = results.rows;
            
             return res.render("admin/recipes/create", {chefOptions: options });
 
         }catch(err) {
             console.error(err);
-        }
-        
+        }        
     },
 
     async show(req, res){
@@ -94,7 +85,6 @@ module.exports = {
             const { recipe } = req;            
 
             let files = await Recipe.allFiles(recipe.id);
-            // let files = results.rows;
             files = files.map( file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -109,8 +99,7 @@ module.exports = {
 
         }catch(err) {
             console.error(err)
-        }          
-
+        }
     },
 
     async post(req, res){
@@ -120,37 +109,15 @@ module.exports = {
             const datasRecipe = {
                 ...req.body,
                 user_id: req.session.userID
-            } 
-            
-            // console.log(datasRecipe);
-            
-
-            // const datasRecipe = {
-            //     title: req.body.title,
-            //     chef_id: req.body.chef_id,
-            //     ingredients: checkItemAdd(req.body.ingredients),
-            //     preparation: checkItemAdd(req.body.preparation),
-            //     information: req.body.information,
-            //     user_id: req.session.userID
-            // }
+            }              
 
             const recipeID = await Recipe.createRecipe(datasRecipe);
-            // const recipeID = await Recipe.create(datasRecipe);
-            // let results = await Recipe.create(datasRecipe);
-            // const recipeID = results.rows[0].id;   
 
             const filesPromise = req.files.map(async function(file){
 
                 const { filename, path } = file;
                 
-                const fileID = await File.create({ name: filename, path });
-                // const results = await File.create({...file})
-                // let fileID= results.rows[0].id;
-                
-                // const data = {
-                //     recipeID: recipeID,
-                //     fileID
-                // } 
+                const fileID = await File.create({ name: filename, path });                 
                 
                 const data = {
                     recipe_id: recipeID,
@@ -162,13 +129,10 @@ module.exports = {
             });
             
             await Promise.all(filesPromise);
-
             
             const recipe = await Recipe.findRecipe(recipeID);
-            // const recipe = result.rows[0];
 
             let files = await Recipe.allFiles(recipe.id);
-            // let files = result.rows;
 
             files = files.map( file => ({
                 ...file,
@@ -194,15 +158,12 @@ module.exports = {
 
     async edit(req, res){
 
-        try {// ####  Começar a mexer nesta parte  ####
+        try {
             const { recipe } = req;
 
             const options = await Recipe.chefsSelectOptions();
-            // const options = results.rows;
 
             let files = await Recipe.allFiles(recipe.id);            
-            // let files = await Recipe.files(recipe.id);
-            // let files = results.rows;
             files = files.map( file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -212,9 +173,7 @@ module.exports = {
 
         }catch(err) {
             console.error(err)
-        }       
-        
-
+        }  
     },
 
     async put(req, res){
@@ -226,8 +185,6 @@ module.exports = {
                 const newFilesPromise = req.files.map(async function(file) {
                     const { filename, path } = file;
                     const fileID = await File.create({name: filename, path: path });
-                    // const results = await File.create(file);
-                    // const fileID = results.rows[0].id;    { name: filename, path: path }
 
                     const data = {
                         recipe_id: req.body.id,
@@ -248,8 +205,6 @@ module.exports = {
                 const removedFilesPromise = removedFiles.map(async function(id) {
 
                     const fileIdDelete  = await File.getIdFiles(id);
-                    // const result  = await File.getIdFiles(id);
-                    // const fileIdDelete = result.rows[0].file_id;
                                     
                     RecipeFiles.delete(id)
                     File.delete(fileIdDelete)
@@ -261,13 +216,8 @@ module.exports = {
             await Recipe.update(req.body);
             
             const recipe = await Recipe.findRecipe(req.body.id);
-            // let results = await Recipe.find(req.body.id);
-            // const recipe = results.rows[0];
 
             let files = await Recipe.allFiles(req.body.id);
-            // results = await Recipe.files(req.body.id);
-            // let files = results.rows;
-
             files = files.map( file => ({
                 ...file,
                 src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
@@ -286,8 +236,7 @@ module.exports = {
 
         }catch(err) {
             console.error(err);
-        } 
-
+        }
     },
 
     async delete(req, res){
@@ -302,8 +251,6 @@ module.exports = {
     
             const filesRemovedPromise = data.files_recipes.map(async function(file){
                 const removeFile = await RecipeFiles.getIdFiles(file);
-                // const results = await RecipeFiles.getIdFiles(file);
-                // const RemoveFile = results.rows[0].file_id;            
     
                 RecipeFiles.delete(file);
                 File.delete(removeFile);  
@@ -317,8 +264,7 @@ module.exports = {
 
        }catch(err) {
            console.log(err);
-       }        
-
+       }
     },
     
     deleteRecipe(req, res) {

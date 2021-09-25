@@ -17,6 +17,7 @@ A aplicação em desenvolvimento é um site para cadastro de receitas. O projeto
 * Possui um Upload de imagens
 * Integração com o banco de dados PostgreSQL
 * Padrão de Arquitetura MVC
+* Sistema de Login
 
 :construction: O projeto continua em desenvolvimento... :construction:
 

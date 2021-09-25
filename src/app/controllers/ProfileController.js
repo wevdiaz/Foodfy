@@ -31,8 +31,7 @@ module.exports = {
             return res.render("admin/user/index", {
                 error: "Algum erro aconteceu!"
             });
-        }
-        
+        }        
     },
 
     async recipesUser(req, res) {
@@ -59,7 +58,6 @@ module.exports = {
 
                     async function getRecipeImage(recipeID) {
                         const file = await Recipe.files(recipeID);
-                        // const file = results.rows[0];
 
                         return `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
                     }
@@ -86,7 +84,6 @@ module.exports = {
         }
 
         const recipesTotal = await Recipe.findByUserRecipe(id);
-        // const recipesTotal = results.rows;
 
         if (recipesTotal == "") {
             return res.render("admin/user/my-recipes", { recipes: recipesTotal.length });

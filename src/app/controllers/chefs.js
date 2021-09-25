@@ -1,4 +1,3 @@
-const db = require("../../config/db");
 const Chef = require("../models/chef");
 const Recipe = require("../models/recipe");
 const File = require("../models/File");
@@ -61,7 +60,6 @@ module.exports = {
     async show(req, res) {
 
         try {
-            // let chef = await Chef.findWithTotalRecipe(req.params.id);            
             let chef = await Chef.find(req.params.id);            
             
             if (!chef) return res.send("Chef not found");
@@ -105,12 +103,9 @@ module.exports = {
     async post(req, res) {
 
        try {
-            const { filename, path } = req.files[0];
-                   
+            const { filename, path } = req.files[0];                   
             
-            // let results = await File.create({...req.files[0]});
             const file = await File.create({ name: filename, path: path });
-            //const file = results.rows[0].id; // verificar o retorno usando a função do Base agora
             
             const data = {
             name: req.body.name,
@@ -118,9 +113,7 @@ module.exports = {
             created_at: foundDate(Date.now()).iso
             }      
     
-            const chefId = await Chef.create(data);
-            // const id = results.rows[0].id;
-            
+            const chefId = await Chef.create(data);            
             
             const chef = await findChef(req, chefId);
             const userSession = await findUserSession(req.session.userID);            
@@ -141,17 +134,11 @@ module.exports = {
 
         try {
             let chef = await Chef.find(req.params.id);
-            // let chef = results.rows[0];
 
             if(!chef) return res.send("Chef not found!");        
 
             let avatarChef = await Chef.getImageChef(chef.id);            
-            chef.avatar = `${req.protocol}://${req.headers.host}${avatarChef.image.replace("public", "")}`;
-            
-            // chef = {
-            //     ...chef,
-            //     avatar: avatarChef           
-            // }              
+            chef.avatar = `${req.protocol}://${req.headers.host}${avatarChef.image.replace("public", "")}`;                         
 
             return res.render("admin/chefs/edit", { chef });
 
@@ -169,13 +156,11 @@ module.exports = {
             if (req.files.length != 0) {
                 const { filename, path } = req.files[0];
                 file = await File.create({ name: filename, path: path });
-                // file = results.rows[0].id;            
             }
 
             const data = {
                 name: req.body.name,
                 file_id: file
-                // id: req.body.id
             }          
             
             await Chef.update(req.body.id, data);
@@ -186,14 +171,8 @@ module.exports = {
             }
 
             let chef = await Chef.find(req.body.id);
-            // let chef = results.rows[0];
 
-            chef.avatar = await findImageChef(req, req.body.id);
-            // const avatarChef = await findImageChef(req, req.body.id);
-            // chef = {
-            //     ...chef,
-            //     avatar: avatarChef
-            // }
+            chef.avatar = await findImageChef(req, req.body.id);            
 
             const userSession = await findUserSession(req.session.userID);
             
@@ -205,8 +184,7 @@ module.exports = {
 
         }catch(err) {
             console.error(err);
-        }
-        
+        }        
     },
 
     async delete(req, res) {
