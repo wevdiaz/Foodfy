@@ -55,8 +55,6 @@ async function show(req, res, next) {
 
 async function edit(req, res, next) {
     const recipe= await Recipe.find(req.params.id);
-    // const results = await Recipe.find(req.params.id);
-    // const recipe = results.rows[0];
 
     if (!recipe) {
         return res.render("admin/recipes/index", {
@@ -74,12 +72,8 @@ async function put(req, res, next) {
     let fillAllFields = checkAllFields(req.body);
 
     const options = await Recipe.chefsSelectOptions();
-    // const results = await Recipe.chefsSelectOptions();
-    // const options = results.rows;
 
     let files = await Recipe.allFiles(req.body.id);
-    // const result = await Recipe.files(req.body.id);
-    // let files = result.rows;
     files = files.map( file => ({
         ...file,
         src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
