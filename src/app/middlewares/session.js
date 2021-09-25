@@ -31,8 +31,6 @@ async function onlyUserAlterRecipe(req, res, next) {
     const id = req.session.userID;
 
     const user = await Recipe.find(recipeId);
-    // const results = await Recipe.find(recipeId);
-    // const user = results.rows[0];
     
     const admin = await User.findOne({ where: {id}});    
 
