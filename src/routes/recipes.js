@@ -9,6 +9,9 @@ const RecipeValidators = require("../app/validators/recipes");
 routes.get("/", onlyUsers, recipes.index );
 routes.get("/create", onlyUsers, recipes.create );
 routes.get("/delete_recipe", onlyUsers, recipes.deleteRecipe );
+
+routes.get("/sucess", recipes.deleteSucess );
+
 routes.get("/:id", onlyUsers, RecipeValidators.show, recipes.show );
 routes.get("/:id/edit", onlyUserAlterRecipe, RecipeValidators.edit, recipes.edit );
 routes.post("/", onlyUsers, multer.array("photos", 5), RecipeValidators.post, recipes.post );

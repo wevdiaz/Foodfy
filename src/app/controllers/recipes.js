@@ -269,5 +269,9 @@ module.exports = {
     
     deleteRecipe(req, res) {
         return res.render("admin/recipes/delete_recipe");
+    },
+
+    deleteSucess(req, res) {
+        res.render("admin/parts/success-delete");
     }
 }
