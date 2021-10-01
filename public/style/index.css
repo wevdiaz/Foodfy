@@ -734,7 +734,17 @@ a.active {
 
 /* --- Animation Lottie  --- */
 
-.lottie {
-    margin-top: 100px;
-    color: red;
+.alert {
+    max-width: 600px;     
+}
+
+.success-lottie {    
+    width: 100px;
+    height: 100px;
+    margin-bottom: 32px;
+}
+
+.info h2 {
+    text-align: center;
+    color: var(--color-linkAndBtn);
 }
