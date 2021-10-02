@@ -197,16 +197,10 @@ module.exports = {
 
             const itemDeleted = "Cadastro deletado";
             return res.render("admin/parts/success-delete", { itemDeleted });
-            // return res.redirect("/admin/chefs/deleted_point");
 
         }catch(err) {
             console.error(err);
         }        
-    },
-    
-    // deleted_point(req, res) {
-        
-    //     return res.render("admin/chefs/deleted_point");        
-    // }
+    }   
     
 }

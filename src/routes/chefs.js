@@ -11,7 +11,6 @@ const { onlyAdmin, onlyUsers } = require("../app/middlewares/session");
 
 routes.get("/", onlyUsers, chefs.index );
 routes.get("/create", onlyAdmin,  chefs.create );
-// routes.get("/deleted_point", onlyAdmin, deleted_point );
 routes.post("/", onlyAdmin, multer.array("photoChef", 1), chefValidators.post , chefs.post );
 routes.get("/:id", onlyUsers, chefs.show );
 routes.get("/:id/edit", onlyAdmin, chefs.edit );

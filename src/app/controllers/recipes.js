@@ -263,21 +263,10 @@ module.exports = {
             const itemDeleted = "Receita deletada";
 
             return res.render("admin/parts/success-delete", { itemDeleted }); 
-            // return res.redirect("/admin/recipes/delete_recipe"); 
 
        }catch(err) {
            console.log(err);
        }
-    },
+    }    
     
-    // deleteRecipe(req, res) {
-    //     return res.render("admin/recipes/delete_recipe");
-    // },
-
-    // deleteSuccess(req, res) {
-    //     // const itemDeleted = "Receita deletada";
-
-    //     res.render("admin/parts/success-delete");
-    //     // res.render("admin/parts/success-delete", { itemDeleted });
-    // }
 }

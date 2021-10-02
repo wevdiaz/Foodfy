@@ -24,6 +24,7 @@
 
         let itemDeleted = document.querySelector(".info h2 #itemDeleted").textContent;
         itemDeleted = itemDeleted.split(" ");
+        
         const redirectPage = itemDeleted[0] === "Receita" ? "recipes" : "chefs";
 
         setTimeout(function(){
