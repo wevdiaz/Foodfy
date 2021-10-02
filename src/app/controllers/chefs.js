@@ -115,7 +115,9 @@ module.exports = {
     
             const chefId = await Chef.create(data);            
             
-            const chef = await findChef(req, chefId);
+            let chef = await findChef(req, chefId);
+            chef.total_recipes = 0;
+
             const userSession = await findUserSession(req.session.userID);            
             
             return res.render("admin/chefs/show", {
@@ -193,16 +195,18 @@ module.exports = {
             await Chef.delete(req.body.id);
             await File.delete(req.body.file_id);
 
-            return res.redirect("/admin/chefs/deleted_point");
+            const itemDeleted = "Cadastro deletado";
+            return res.render("admin/parts/success-delete", { itemDeleted });
+            // return res.redirect("/admin/chefs/deleted_point");
 
         }catch(err) {
             console.error(err);
         }        
     },
     
-    deleted_point(req, res) {
+    // deleted_point(req, res) {
         
-        return res.render("admin/chefs/deleted_point");        
-    }
+    //     return res.render("admin/chefs/deleted_point");        
+    // }
     
 }
