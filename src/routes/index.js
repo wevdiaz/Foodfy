@@ -1,7 +1,7 @@
 const express = require("express");
 const routes = express.Router();
 
-const VisitorController = require("../app/controllers/visitor");
+const VisitorController = require("../app/controllers/VisitorController");
 
 const users = require("./users");
 const recipes = require("./recipes");
