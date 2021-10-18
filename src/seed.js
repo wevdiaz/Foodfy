@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-// const mailer = require("../../lib/mailer");
+const mailer = require("./lib/mailer");
 const faker = require("faker");
 
 const { hash } = require("bcryptjs");
@@ -26,6 +26,28 @@ async function createUsers() {
     const usersPromise = users.map( user => User.create(user));
 
     await Promise.all(usersPromise);
+
+    sendEmailToUser(users, passwordToken);
+}
+
+function sendEmailToUser(users, token) {
+    
+    users.forEach(async user => {
+        await mailer.sendMail({
+            to: user.email,
+            from: "no-reply@foodfy.com.br",
+            subject: "Olá! Seja bem Vindo ao Foodfy",
+            html: `<h2>Olá, ${user.name}</h2>
+
+            <p> Seja bem vindo ao Foodfy! Você agora poderá criar receitas em nosso site.</p>
+
+            <p>
+                Para você fazer login em nossa aplicação, você poderá utiizar essa <strong>Senha</strong>: ${token}
+            </p>
+                       
+            `
+        });
+    });
 }
 
 createUsers();
