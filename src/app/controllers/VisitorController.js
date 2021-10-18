@@ -1,5 +1,5 @@
 const Recipe = require("../models/recipe");
-const Chef = require("../models/chef");
+const Chef = require("../models/Chef");
 // const Files = require("../models/File");
 
 
@@ -140,6 +140,10 @@ module.exports = {
 
                 recipes = await Promise.all(recipesPromises);
             }
+
+            const checkTotalRecipes = recipes[0].chef_id === null ? 0 : recipes.length;
+
+            chef.total_recipes = checkTotalRecipes;
 
             return res.render("visitors/chef_profile", { chef, recipes });
 
