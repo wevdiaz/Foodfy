@@ -503,19 +503,20 @@ footer p {
     line-height: 16px;   
     margin: 0;
     display: block; 
-    border-radius: 4px;   
+    border-radius: 4px;  
+    color: #999; 
 }
 
-.links_adm .account_user .submenu li a.not-bar:hover::after {
+/* .links_adm .account_user .submenu li a.not-bar:hover::after {
     background-color: yellow;
     width: 0;  
-}
+} */
 
 .links_adm .account_user .submenu li a.not-bar:hover {
-    color: #111;
+    /* color: #111; */
+    color: orchid;
     font-weight: bold; 
-    padding-bottom: 2px;   
-   
+    padding-bottom: 2px;    
 }
 
 .links_adm .account_user:hover .submenu {
@@ -756,4 +757,13 @@ a.active {
 .alert .info h2 {
     text-align: center;
     color: var(--color-linkAndBtn);
+}
+
+/* ### Menu Active ### */
+.topo-principal nav ul li a.active {
+    color: red;
+}
+
+.links_adm ul li a.active {
+    color: #fff;
 }
