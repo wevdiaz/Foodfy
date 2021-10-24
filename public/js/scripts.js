@@ -44,5 +44,27 @@ const Validate = {
             value
         }
 
+    },
+
+    fieldNameChef(event) {
+        const fieldName = document.querySelector("#formCreateChef input[name='name']");
+
+        if (fieldName.value === "") {
+            fieldName.classList.add("field-error");
+            event.preventDefault();
+        }        
+    },
+
+    allFields(event) {
+        const fields = document.querySelectorAll(".item-form input, .item-form select, .ingredient input, .passoPreparo input, .item-form textarea");
+
+        for (field of fields) {
+            if(field.value === "") {
+                field.classList.add("field-error");
+                event.preventDefault();
+            } else {
+                field.classList.remove("field-error");
+            }
+        }
     }
 }

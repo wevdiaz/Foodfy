@@ -17,8 +17,8 @@ function checkAllfields(body) {
 
  function post(req, res, next) {
     const fillAllFields = checkAllfields(req.body);
-
-    if (fillAllFields) {
+    
+    if (fillAllFields) {        
         return res.render("admin/chefs/create", fillAllFields);
     }
 

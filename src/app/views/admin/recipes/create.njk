@@ -7,11 +7,11 @@
 
 {% block content %}
     
-    <form class="form-create" action="/admin/recipes" method="POST" enctype="multipart/form-data">
+    <form id="formCreateRecipe" class="form-create" action="/admin/recipes" method="POST" enctype="multipart/form-data">
 
         <header id="form-top">
             <h2>Criando receita</h2>
-            <button type="submit">Salvar receita</button>
+            <button type="submit" onclick="Validate.allFields(event)">Salvar receita</button>
         </header>
 
         <div class="item-form">
@@ -40,4 +40,5 @@
 
     <script src="../../js/script-foodfy.js"></script>
     <script src="../../js/upload_images.js"></script>
+    <script src="../../js/scripts.js"></script>
 {% endblock %}
