@@ -15,6 +15,3 @@ for (link of linksVisitors) {
         link.classList.add("active");        
     }
 }
-
-console.log("To aqui!")
-console.log(linksVisitors);

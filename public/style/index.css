@@ -507,10 +507,6 @@ footer p {
     color: #999; 
 }
 
-/* .links_adm .account_user .submenu li a.not-bar:hover::after {
-    background-color: yellow;
-    width: 0;  
-} */
 
 .links_adm .account_user .submenu li a.not-bar:hover {
     /* color: #111; */
