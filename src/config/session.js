@@ -1,5 +1,6 @@
 const session = require("express-session");
 const pgSession = require("connect-pg-simple")(session);
+require("dotenv").config();
 
 const db = require("./db");
 
@@ -7,7 +8,7 @@ module.exports = session({
     store: new pgSession({
         pool: db
     }),
-    secret: "foodfydiazz",
+    secret: process.env.SECRET_SESSION,
     resave: false,
     saveUninitialized: false,
     cookie: {
