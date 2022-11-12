@@ -31,7 +31,7 @@ A aplicação em desenvolvimento é um site para cadastro de receitas. O projeto
 * PostgreSQL
 
 
-### :gear: Requesitos
+### :gear: Requisitos
 
 **Necessário ter o nodejs instalado.**
 
